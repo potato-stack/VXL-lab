@@ -69,6 +69,21 @@ void clearAllClock()
 	HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_SET);
 }
+void setNumberONClock(int numb)
+{
+	if(numb == 0) HAL_GPIO_WritePin(pin_1_GPIO_Port, pin_1_Pin, GPIO_PIN_RESET);
+	if(numb == 1) HAL_GPIO_WritePin(pin_2_GPIO_Port, pin_2_Pin, GPIO_PIN_RESET);
+	if(numb == 2) HAL_GPIO_WritePin(pin_3_GPIO_Port, pin_3_Pin, GPIO_PIN_RESET);
+	if(numb == 3)	HAL_GPIO_WritePin(pin_4_GPIO_Port, pin_4_Pin, GPIO_PIN_RESET);
+	if(numb == 4)	HAL_GPIO_WritePin(pin_5_GPIO_Port, pin_5_Pin, GPIO_PIN_RESET);
+	if(numb == 5)	HAL_GPIO_WritePin(pin_6_GPIO_Port, pin_6_Pin, GPIO_PIN_RESET);
+	if(numb == 6)	HAL_GPIO_WritePin(pin_7_GPIO_Port, pin_7_Pin, GPIO_PIN_RESET);
+	if(numb == 7)	HAL_GPIO_WritePin(pin_8_GPIO_Port, pin_8_Pin, GPIO_PIN_RESET);
+	if(numb == 8)	HAL_GPIO_WritePin(pin_9_GPIO_Port, pin_9_Pin, GPIO_PIN_RESET);
+	if(numb == 9)	HAL_GPIO_WritePin(pin_10_GPIO_Port, pin_10_Pin, GPIO_PIN_RESET);
+	if(numb == 10)	HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_RESET);
+	if(numb == 11)	HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_RESET);
+}
 /* USER CODE END 0 */
 
 /**
@@ -111,20 +126,20 @@ int main(void)
 	  if(count_time == 0)
 	  {
 		  clearAllClock();
-		  HAL_GPIO_WritePin(pin_1_GPIO_Port, pin_1_Pin, GPIO_PIN_RESET);
+		  setNumberONClock(0);
 
 	  }
-	  else if(count_time == 1) HAL_GPIO_WritePin(pin_2_GPIO_Port, pin_2_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 2) HAL_GPIO_WritePin(pin_3_GPIO_Port, pin_3_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 3) HAL_GPIO_WritePin(pin_4_GPIO_Port, pin_4_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 4) HAL_GPIO_WritePin(pin_5_GPIO_Port, pin_5_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 5) HAL_GPIO_WritePin(pin_6_GPIO_Port, pin_6_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 6) HAL_GPIO_WritePin(pin_7_GPIO_Port, pin_7_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 7) HAL_GPIO_WritePin(pin_8_GPIO_Port, pin_8_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 8) HAL_GPIO_WritePin(pin_9_GPIO_Port, pin_9_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 9) HAL_GPIO_WritePin(pin_10_GPIO_Port, pin_10_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 10) HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_RESET);
-	  else if(count_time == 11) HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_RESET);
+	  else if(count_time == 1) setNumberONClock(1);
+	  else if(count_time == 2) setNumberONClock(2);
+	  else if(count_time == 3) setNumberONClock(3);
+	  else if(count_time == 4) setNumberONClock(4);
+	  else if(count_time == 5) setNumberONClock(5);
+	  else if(count_time == 6) setNumberONClock(6);
+	  else if(count_time == 7) setNumberONClock(7);
+	  else if(count_time == 8) setNumberONClock(8);
+	  else if(count_time == 9) setNumberONClock(9);
+	  else if(count_time == 10) setNumberONClock(10);
+	  else if(count_time == 11) setNumberONClock(11);
 	  if(count_time > 11)
 	  	  {
 	  		  count_time = 0;
