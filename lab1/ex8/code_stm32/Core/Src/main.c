@@ -69,7 +69,7 @@ void clearAllClock()
 	HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_SET);
 }
-void setNumberONClock(int numb)
+void setNumberOnClock(int numb)
 {
 	if(numb == 0) HAL_GPIO_WritePin(pin_1_GPIO_Port, pin_1_Pin, GPIO_PIN_RESET);
 	if(numb == 1) HAL_GPIO_WritePin(pin_2_GPIO_Port, pin_2_Pin, GPIO_PIN_RESET);
