@@ -135,33 +135,61 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int count_time = 0;
+  int second = 0;
+  int minute = 0;
+  int hour = 0;
+  int prev_second = 0;
+  int prev_minute =0;
+  int prev_hour = 0;
   while (1)
   {
-	  if(count_time == 0)
-	  {
-		  clearAllClock();
-		  setNumberONClock(0);
 
-	  }
-	  else if(count_time == 1) setNumberONClock(1);
-	  else if(count_time == 2) setNumberONClock(2);
-	  else if(count_time == 3) setNumberONClock(3);
-	  else if(count_time == 4) setNumberONClock(4);
-	  else if(count_time == 5) setNumberONClock(5);
-	  else if(count_time == 6) setNumberONClock(6);
-	  else if(count_time == 7) setNumberONClock(7);
-	  else if(count_time == 8) setNumberONClock(8);
-	  else if(count_time == 9) setNumberONClock(9);
-	  else if(count_time == 10) setNumberONClock(10);
-	  else if(count_time == 11) setNumberONClock(11);
-	  if(count_time > 11)
-	  	  {
-	  		  count_time = 0;
+	  if(second == 0 && minute == 0 && hour == 0)
+	  {
 	  		  clearAllClock();
-	  	  }
-	  else  count_time++;
-	  HAL_Delay(1000);
+	  		  setNumberOnClock(0);
+	  }
+	  else
+	  {
+		  	  if(second == 60)
+		  	  {
+		  		  second = 0;
+		  		  prev_minute = minute;
+		  		  prev_second = 59;
+		  		  minute++;
+		  	  }
+		  	  if(minute == 60)
+		  	  {
+		  		  minute = 0;
+		  		  prev_hour = hour;
+		  		  prev_minute = 59;
+		  		  hour++;
+		  	  }
+		  	  if(hour == 12)
+		  	  {
+		  		  prev_hour = 11;
+		  		  hour = 0;
+		  	  }
+		  	  /* change the minute and hour if need */
+		  	  if(prev_second != minute && prev_second != hour*5)
+		  	  {
+		  		   clearNumberOnClock(prev_second/5);
+		  	  }
+		  	  if(prev_minute != second && prev_minute != hour*5)
+		  	  {
+		  		  clearNumberOnClock(prev_minute/5);
+		  	  }
+		  	  if(prev_hour != second/5 && prev_hour != minute/5)
+		  	  {
+		  		  clearNumberOnClock(prev_hour);
+		  	  }
+		  	  setNumberOnClock(second/5);
+		  	  setNumberOnClock(minute/5);
+		  	  setNumberOnClock(hour);
+	  }
+	  prev_second = second;
+	  second++;
+	  HAL_Delay(1);
 
     /* USER CODE END WHILE */
 
