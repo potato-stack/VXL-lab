@@ -189,7 +189,7 @@ int main(void)
 	  }
 	  prev_second = second;
 	  second++;
-	  HAL_Delay(1);
+	  HAL_Delay(1000);
 
     /* USER CODE END WHILE */
 
