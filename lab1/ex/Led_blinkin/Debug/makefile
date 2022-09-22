@@ -64,8 +64,8 @@ all: main-build
 main-build: Led_blinkin.elf secondary-outputs
 
 # Tool invocations
-Led_blinkin.elf: $(OBJS) $(USER_OBJS) E:\STM32\projectfile\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Led_blinkin.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\STM32\projectfile\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_blinkin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Led_blinkin.elf: $(OBJS) $(USER_OBJS) C:\Users\hatru\OneDrive\Desktop\VXL\VXL-lab\lab1\ex\Led_blinkin\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Led_blinkin.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\hatru\OneDrive\Desktop\VXL\VXL-lab\lab1\ex\Led_blinkin\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_blinkin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

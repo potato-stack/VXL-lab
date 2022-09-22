@@ -1,0 +1,19 @@
+09:32:29 **** Build of configuration Debug for project Led_blinkin ****
+make -j12 all 
+arm-none-eabi-gcc -o "Led_blinkin.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\hatru\OneDrive\Desktop\VXL\VXL-lab\lab1\ex\Led_blinkin\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_blinkin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_blinkin.elf
+ 
+arm-none-eabi-size   Led_blinkin.elf 
+arm-none-eabi-objdump -h -S  Led_blinkin.elf  > "Led_blinkin.list"
+arm-none-eabi-objcopy  -O ihex  Led_blinkin.elf  "Led_blinkin.hex"
+arm-none-eabi-objcopy  -O binary  Led_blinkin.elf  "Led_blinkin.bin"
+   text	   data	    bss	    dec	    hex	filename
+   6680	     20	   1572	   8272	   2050	Led_blinkin.elf
+Finished building: default.size.stdout
+ 
+Finished building: Led_blinkin.bin
+Finished building: Led_blinkin.hex
+ 
+ 
+Finished building: Led_blinkin.list
+ 
