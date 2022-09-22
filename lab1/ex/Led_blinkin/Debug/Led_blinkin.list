@@ -77,145 +77,145 @@ Disassembly of section .text:
  8000148:	08001204 	.word	0x08001204
 
 0800014c <main>:
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
-int main(void)
-{
+    HAL_GPIO_WritePin(pin_2_GPIO_Port, pin_2_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_3_GPIO_Port, pin_3_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_4_GPIO_Port, pin_4_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_5_GPIO_Port, pin_5_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_6_GPIO_Port, pin_6_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_7_GPIO_Port, pin_7_Pin, GPIO_PIN_SET);
  800014c:	b580      	push	{r7, lr}
  800014e:	b082      	sub	sp, #8
  8000150:	af00      	add	r7, sp, #0
-  /* USER CODE END 1 */
+	HAL_GPIO_WritePin(pin_10_GPIO_Port, pin_10_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_SET);
+}
+void setNumberOnClock(int numb)
+{
+ 8000152:	f000 f947 	bl	80003e4 <HAL_Init>
+	if(numb == 1) HAL_GPIO_WritePin(pin_2_GPIO_Port, pin_2_Pin, GPIO_PIN_RESET);
+	if(numb == 2) HAL_GPIO_WritePin(pin_3_GPIO_Port, pin_3_Pin, GPIO_PIN_RESET);
+	if(numb == 3)	HAL_GPIO_WritePin(pin_4_GPIO_Port, pin_4_Pin, GPIO_PIN_RESET);
+	if(numb == 4)	HAL_GPIO_WritePin(pin_5_GPIO_Port, pin_5_Pin, GPIO_PIN_RESET);
+	if(numb == 5)	HAL_GPIO_WritePin(pin_6_GPIO_Port, pin_6_Pin, GPIO_PIN_RESET);
+	if(numb == 6)	HAL_GPIO_WritePin(pin_7_GPIO_Port, pin_7_Pin, GPIO_PIN_RESET);
+ 8000156:	f000 f84b 	bl	80001f0 <SystemClock_Config>
+	if(numb == 8)	HAL_GPIO_WritePin(pin_9_GPIO_Port, pin_9_Pin, GPIO_PIN_RESET);
+	if(numb == 9)	HAL_GPIO_WritePin(pin_10_GPIO_Port, pin_10_Pin, GPIO_PIN_RESET);
+	if(numb == 10)	HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_RESET);
+	if(numb == 11)	HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_RESET);
+}
+void clearNumberOnClock(int numb)
+ 800015a:	f000 f885 	bl	8000268 <MX_GPIO_Init>
+	if(numb == 0) HAL_GPIO_WritePin(pin_1_GPIO_Port, pin_1_Pin, GPIO_PIN_SET);
+	if(numb == 1) HAL_GPIO_WritePin(pin_2_GPIO_Port, pin_2_Pin, GPIO_PIN_SET);
+	if(numb == 2) HAL_GPIO_WritePin(pin_3_GPIO_Port, pin_3_Pin, GPIO_PIN_SET);
+	if(numb == 3)	HAL_GPIO_WritePin(pin_4_GPIO_Port, pin_4_Pin, GPIO_PIN_SET);
+	if(numb == 4)	HAL_GPIO_WritePin(pin_5_GPIO_Port, pin_5_Pin, GPIO_PIN_SET);
+	if(numb == 5)	HAL_GPIO_WritePin(pin_6_GPIO_Port, pin_6_Pin, GPIO_PIN_SET);
+ 800015e:	2300      	movs	r3, #0
+ 8000160:	607b      	str	r3, [r7, #4]
+	if(numb == 6)	HAL_GPIO_WritePin(pin_7_GPIO_Port, pin_7_Pin, GPIO_PIN_SET);
+	if(numb == 7)	HAL_GPIO_WritePin(pin_8_GPIO_Port, pin_8_Pin, GPIO_PIN_SET);
+	if(numb == 8)	HAL_GPIO_WritePin(pin_9_GPIO_Port, pin_9_Pin, GPIO_PIN_SET);
+ 8000162:	687b      	ldr	r3, [r7, #4]
+ 8000164:	2b09      	cmp	r3, #9
+ 8000166:	dd01      	ble.n	800016c <main+0x20>
+ 8000168:	2300      	movs	r3, #0
+ 800016a:	607b      	str	r3, [r7, #4]
+	if(numb == 9)	HAL_GPIO_WritePin(pin_10_GPIO_Port, pin_10_Pin, GPIO_PIN_SET);
+ 800016c:	687b      	ldr	r3, [r7, #4]
+ 800016e:	2b02      	cmp	r3, #2
+ 8000170:	dc0f      	bgt.n	8000192 <main+0x46>
+	if(numb == 10)	HAL_GPIO_WritePin(pin_11_GPIO_Port, pin_11_Pin, GPIO_PIN_SET);
+	if(numb == 11)	HAL_GPIO_WritePin(pin_12_GPIO_Port, pin_12_Pin, GPIO_PIN_SET);
+ 8000172:	2201      	movs	r2, #1
+ 8000174:	2120      	movs	r1, #32
+ 8000176:	481d      	ldr	r0, [pc, #116]	; (80001ec <main+0xa0>)
+ 8000178:	f000 fc18 	bl	80009ac <HAL_GPIO_WritePin>
+}
+ 800017c:	2201      	movs	r2, #1
+ 800017e:	2140      	movs	r1, #64	; 0x40
+ 8000180:	481a      	ldr	r0, [pc, #104]	; (80001ec <main+0xa0>)
+ 8000182:	f000 fc13 	bl	80009ac <HAL_GPIO_WritePin>
+/* USER CODE END 0 */
+ 8000186:	2200      	movs	r2, #0
+ 8000188:	2180      	movs	r1, #128	; 0x80
+ 800018a:	4818      	ldr	r0, [pc, #96]	; (80001ec <main+0xa0>)
+ 800018c:	f000 fc0e 	bl	80009ac <HAL_GPIO_WritePin>
+ 8000190:	e024      	b.n	80001dc <main+0x90>
 
+/**
+ 8000192:	687b      	ldr	r3, [r7, #4]
+ 8000194:	2b04      	cmp	r3, #4
+ 8000196:	dc0f      	bgt.n	80001b8 <main+0x6c>
+  * @brief  The application entry point.
+  * @retval int
+ 8000198:	2201      	movs	r2, #1
+ 800019a:	2180      	movs	r1, #128	; 0x80
+ 800019c:	4813      	ldr	r0, [pc, #76]	; (80001ec <main+0xa0>)
+ 800019e:	f000 fc05 	bl	80009ac <HAL_GPIO_WritePin>
+  */
+ 80001a2:	2201      	movs	r2, #1
+ 80001a4:	2120      	movs	r1, #32
+ 80001a6:	4811      	ldr	r0, [pc, #68]	; (80001ec <main+0xa0>)
+ 80001a8:	f000 fc00 	bl	80009ac <HAL_GPIO_WritePin>
+int main(void)
+ 80001ac:	2200      	movs	r2, #0
+ 80001ae:	2140      	movs	r1, #64	; 0x40
+ 80001b0:	480e      	ldr	r0, [pc, #56]	; (80001ec <main+0xa0>)
+ 80001b2:	f000 fbfb 	bl	80009ac <HAL_GPIO_WritePin>
+ 80001b6:	e011      	b.n	80001dc <main+0x90>
+{
+  /* USER CODE BEGIN 1 */
+ 80001b8:	687b      	ldr	r3, [r7, #4]
+ 80001ba:	2b09      	cmp	r3, #9
+ 80001bc:	dc0e      	bgt.n	80001dc <main+0x90>
+
+  /* USER CODE END 1 */
+ 80001be:	2201      	movs	r2, #1
+ 80001c0:	2140      	movs	r1, #64	; 0x40
+ 80001c2:	480a      	ldr	r0, [pc, #40]	; (80001ec <main+0xa0>)
+ 80001c4:	f000 fbf2 	bl	80009ac <HAL_GPIO_WritePin>
+
+ 80001c8:	2201      	movs	r2, #1
+ 80001ca:	2180      	movs	r1, #128	; 0x80
+ 80001cc:	4807      	ldr	r0, [pc, #28]	; (80001ec <main+0xa0>)
+ 80001ce:	f000 fbed 	bl	80009ac <HAL_GPIO_WritePin>
   /* MCU Configuration--------------------------------------------------------*/
+ 80001d2:	2200      	movs	r2, #0
+ 80001d4:	2120      	movs	r1, #32
+ 80001d6:	4805      	ldr	r0, [pc, #20]	; (80001ec <main+0xa0>)
+ 80001d8:	f000 fbe8 	bl	80009ac <HAL_GPIO_WritePin>
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 80001dc:	687b      	ldr	r3, [r7, #4]
+ 80001de:	3301      	adds	r3, #1
+ 80001e0:	607b      	str	r3, [r7, #4]
   HAL_Init();
- 8000152:	f000 f947 	bl	80003e4 <HAL_Init>
-  /* USER CODE BEGIN Init */
+ 80001e2:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+ 80001e6:	f000 f95f 	bl	80004a8 <HAL_Delay>
+	if(numb == 8)	HAL_GPIO_WritePin(pin_9_GPIO_Port, pin_9_Pin, GPIO_PIN_SET);
+ 80001ea:	e7ba      	b.n	8000162 <main+0x16>
+ 80001ec:	40010800 	.word	0x40010800
 
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
- 8000156:	f000 f84b 	bl	80001f0 <SystemClock_Config>
+080001f0 <SystemClock_Config>:
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
- 800015a:	f000 f885 	bl	8000268 <MX_GPIO_Init>
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  int count_time = 0;
- 800015e:	2300      	movs	r3, #0
- 8000160:	607b      	str	r3, [r7, #4]
-    while (1)
-    {
-  	  if(count_time > 9) count_time = 0;
- 8000162:	687b      	ldr	r3, [r7, #4]
- 8000164:	2b09      	cmp	r3, #9
- 8000166:	dd01      	ble.n	800016c <main+0x20>
- 8000168:	2300      	movs	r3, #0
- 800016a:	607b      	str	r3, [r7, #4]
-  	  if(count_time <= 2 ) /* green on the first */
- 800016c:	687b      	ldr	r3, [r7, #4]
- 800016e:	2b02      	cmp	r3, #2
- 8000170:	dc0f      	bgt.n	8000192 <main+0x46>
-  	  	  {
-  		  	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
- 8000172:	2201      	movs	r2, #1
- 8000174:	2120      	movs	r1, #32
- 8000176:	481d      	ldr	r0, [pc, #116]	; (80001ec <main+0xa0>)
- 8000178:	f000 fc18 	bl	80009ac <HAL_GPIO_WritePin>
-  	  	    HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
- 800017c:	2201      	movs	r2, #1
- 800017e:	2140      	movs	r1, #64	; 0x40
- 8000180:	481a      	ldr	r0, [pc, #104]	; (80001ec <main+0xa0>)
- 8000182:	f000 fc13 	bl	80009ac <HAL_GPIO_WritePin>
-  	  		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
- 8000186:	2200      	movs	r2, #0
- 8000188:	2180      	movs	r1, #128	; 0x80
- 800018a:	4818      	ldr	r0, [pc, #96]	; (80001ec <main+0xa0>)
- 800018c:	f000 fc0e 	bl	80009ac <HAL_GPIO_WritePin>
- 8000190:	e024      	b.n	80001dc <main+0x90>
-  	  	  }
-  	  else if(count_time <= 4) /*yellow on the first */
- 8000192:	687b      	ldr	r3, [r7, #4]
- 8000194:	2b04      	cmp	r3, #4
- 8000196:	dc0f      	bgt.n	80001b8 <main+0x6c>
-  	  	  {
-  	  		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
- 8000198:	2201      	movs	r2, #1
- 800019a:	2180      	movs	r1, #128	; 0x80
- 800019c:	4813      	ldr	r0, [pc, #76]	; (80001ec <main+0xa0>)
- 800019e:	f000 fc05 	bl	80009ac <HAL_GPIO_WritePin>
-  	  	    HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
- 80001a2:	2201      	movs	r2, #1
- 80001a4:	2120      	movs	r1, #32
- 80001a6:	4811      	ldr	r0, [pc, #68]	; (80001ec <main+0xa0>)
- 80001a8:	f000 fc00 	bl	80009ac <HAL_GPIO_WritePin>
-  	  		HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
- 80001ac:	2200      	movs	r2, #0
- 80001ae:	2140      	movs	r1, #64	; 0x40
- 80001b0:	480e      	ldr	r0, [pc, #56]	; (80001ec <main+0xa0>)
- 80001b2:	f000 fbfb 	bl	80009ac <HAL_GPIO_WritePin>
- 80001b6:	e011      	b.n	80001dc <main+0x90>
-  	  	  }
-  	  else if(count_time <= 9) /*red on the first */
- 80001b8:	687b      	ldr	r3, [r7, #4]
- 80001ba:	2b09      	cmp	r3, #9
- 80001bc:	dc0e      	bgt.n	80001dc <main+0x90>
-  	  	  {
-  	  		HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
- 80001be:	2201      	movs	r2, #1
- 80001c0:	2140      	movs	r1, #64	; 0x40
- 80001c2:	480a      	ldr	r0, [pc, #40]	; (80001ec <main+0xa0>)
- 80001c4:	f000 fbf2 	bl	80009ac <HAL_GPIO_WritePin>
-  	  		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
- 80001c8:	2201      	movs	r2, #1
- 80001ca:	2180      	movs	r1, #128	; 0x80
- 80001cc:	4807      	ldr	r0, [pc, #28]	; (80001ec <main+0xa0>)
- 80001ce:	f000 fbed 	bl	80009ac <HAL_GPIO_WritePin>
-  	  		HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
- 80001d2:	2200      	movs	r2, #0
- 80001d4:	2120      	movs	r1, #32
- 80001d6:	4805      	ldr	r0, [pc, #20]	; (80001ec <main+0xa0>)
- 80001d8:	f000 fbe8 	bl	80009ac <HAL_GPIO_WritePin>
-  	  	  }
-  	  	  count_time++;
- 80001dc:	687b      	ldr	r3, [r7, #4]
- 80001de:	3301      	adds	r3, #1
- 80001e0:	607b      	str	r3, [r7, #4]
-  	  	  HAL_Delay(1000);
- 80001e2:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
- 80001e6:	f000 f95f 	bl	80004a8 <HAL_Delay>
-  	  if(count_time > 9) count_time = 0;
- 80001ea:	e7ba      	b.n	8000162 <main+0x16>
- 80001ec:	40010800 	.word	0x40010800
-
-080001f0 <SystemClock_Config>:
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
-{
  80001f0:	b580      	push	{r7, lr}
  80001f2:	b090      	sub	sp, #64	; 0x40
  80001f4:	af00      	add	r7, sp, #0
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  /* USER CODE BEGIN 2 */
  80001f6:	f107 0318 	add.w	r3, r7, #24
  80001fa:	2228      	movs	r2, #40	; 0x28
  80001fc:	2100      	movs	r1, #0
  80001fe:	4618      	mov	r0, r3
  8000200:	f000 fff8 	bl	80011f4 <memset>
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
  8000204:	1d3b      	adds	r3, r7, #4
  8000206:	2200      	movs	r2, #0
  8000208:	601a      	str	r2, [r3, #0]
@@ -223,53 +223,53 @@ void SystemClock_Config(void)
  800020c:	609a      	str	r2, [r3, #8]
  800020e:	60da      	str	r2, [r3, #12]
  8000210:	611a      	str	r2, [r3, #16]
+  /* USER CODE END 2 */
 
-  /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  int second = 0;
  8000212:	2302      	movs	r3, #2
  8000214:	61bb      	str	r3, [r7, #24]
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  int minute = 0;
  8000216:	2301      	movs	r3, #1
  8000218:	62bb      	str	r3, [r7, #40]	; 0x28
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  int hour = 0;
  800021a:	2310      	movs	r3, #16
  800021c:	62fb      	str	r3, [r7, #44]	; 0x2c
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  int prev_second = 0;
  800021e:	2300      	movs	r3, #0
  8000220:	637b      	str	r3, [r7, #52]	; 0x34
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  int prev_minute =0;
  8000222:	f107 0318 	add.w	r3, r7, #24
  8000226:	4618      	mov	r0, r3
  8000228:	f000 fbd8 	bl	80009dc <HAL_RCC_OscConfig>
  800022c:	4603      	mov	r3, r0
  800022e:	2b00      	cmp	r3, #0
  8000230:	d001      	beq.n	8000236 <SystemClock_Config+0x46>
-  {
-    Error_Handler();
+  int prev_hour = 0;
+  while (1)
  8000232:	f000 f84b 	bl	80002cc <Error_Handler>
-  }
-  /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+  {
+
+	  if(second == 0 && minute == 0 && hour == 0)
+	  {
  8000236:	230f      	movs	r3, #15
  8000238:	607b      	str	r3, [r7, #4]
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+	  		  clearAllClock();
+	  		  setNumberOnClock(0);
  800023a:	2300      	movs	r3, #0
  800023c:	60bb      	str	r3, [r7, #8]
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+	  }
  800023e:	2300      	movs	r3, #0
  8000240:	60fb      	str	r3, [r7, #12]
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+	  else
  8000242:	2300      	movs	r3, #0
  8000244:	613b      	str	r3, [r7, #16]
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+	  {
  8000246:	2300      	movs	r3, #0
  8000248:	617b      	str	r3, [r7, #20]
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+		  	  if(second == 60)
+		  	  {
  800024a:	1d3b      	adds	r3, r7, #4
  800024c:	2100      	movs	r1, #0
  800024e:	4618      	mov	r0, r3
@@ -277,11 +277,11 @@ void SystemClock_Config(void)
  8000254:	4603      	mov	r3, r0
  8000256:	2b00      	cmp	r3, #0
  8000258:	d001      	beq.n	800025e <SystemClock_Config+0x6e>
-  {
-    Error_Handler();
+		  		  second = 0;
+		  		  prev_minute = minute;
  800025a:	f000 f837 	bl	80002cc <Error_Handler>
-  }
-}
+		  		  prev_second = 59;
+		  		  minute++;
  800025e:	bf00      	nop
  8000260:	3740      	adds	r7, #64	; 0x40
  8000262:	46bd      	mov	sp, r7
@@ -289,25 +289,25 @@ void SystemClock_Config(void)
 	...
 
 08000268 <MX_GPIO_Init>:
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
+		  	  {
+		  		  minute = 0;
+		  		  prev_hour = hour;
+		  		  prev_minute = 59;
+		  		  hour++;
+		  	  }
  8000268:	b580      	push	{r7, lr}
  800026a:	b086      	sub	sp, #24
  800026c:	af00      	add	r7, sp, #0
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
+		  	  if(hour == 12)
  800026e:	f107 0308 	add.w	r3, r7, #8
  8000272:	2200      	movs	r2, #0
  8000274:	601a      	str	r2, [r3, #0]
  8000276:	605a      	str	r2, [r3, #4]
  8000278:	609a      	str	r2, [r3, #8]
  800027a:	60da      	str	r2, [r3, #12]
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
+		  	  {
+		  		  prev_hour = 11;
+		  		  hour = 0;
  800027c:	4b11      	ldr	r3, [pc, #68]	; (80002c4 <MX_GPIO_Init+0x5c>)
  800027e:	699b      	ldr	r3, [r3, #24]
  8000280:	4a10      	ldr	r2, [pc, #64]	; (80002c4 <MX_GPIO_Init+0x5c>)
@@ -318,34 +318,34 @@ static void MX_GPIO_Init(void)
  800028c:	f003 0304 	and.w	r3, r3, #4
  8000290:	607b      	str	r3, [r7, #4]
  8000292:	687b      	ldr	r3, [r7, #4]
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin, GPIO_PIN_RESET);
+		  	  }
+		  	  /* change the minute and hour if need */
+		  	  if(prev_second != minute && prev_second != hour*5)
  8000294:	2200      	movs	r2, #0
  8000296:	21e0      	movs	r1, #224	; 0xe0
  8000298:	480b      	ldr	r0, [pc, #44]	; (80002c8 <MX_GPIO_Init+0x60>)
  800029a:	f000 fb87 	bl	80009ac <HAL_GPIO_WritePin>
-
-  /*Configure GPIO pins : LED_RED_Pin LED_YELLOW_Pin LED_GREEN_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin;
+		  	  {
+		  		   clearNumberOnClock(prev_second/5);
+		  	  }
  800029e:	23e0      	movs	r3, #224	; 0xe0
  80002a0:	60bb      	str	r3, [r7, #8]
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		  	  if(prev_minute != second && prev_minute != hour*5)
  80002a2:	2301      	movs	r3, #1
  80002a4:	60fb      	str	r3, [r7, #12]
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+		  	  {
  80002a6:	2300      	movs	r3, #0
  80002a8:	613b      	str	r3, [r7, #16]
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		  		  clearNumberOnClock(prev_minute/5);
  80002aa:	2302      	movs	r3, #2
  80002ac:	617b      	str	r3, [r7, #20]
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+		  	  }
  80002ae:	f107 0308 	add.w	r3, r7, #8
  80002b2:	4619      	mov	r1, r3
  80002b4:	4804      	ldr	r0, [pc, #16]	; (80002c8 <MX_GPIO_Init+0x60>)
  80002b6:	f000 f9ff 	bl	80006b8 <HAL_GPIO_Init>
-
-}
+		  	  if(prev_hour != second/5 && prev_hour != minute/5)
+		  	  {
  80002ba:	bf00      	nop
  80002bc:	3718      	adds	r7, #24
  80002be:	46bd      	mov	sp, r7
@@ -355,12 +355,12 @@ static void MX_GPIO_Init(void)
  80002c8:	40010800 	.word	0x40010800
 
 080002cc <Error_Handler>:
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
-{
+	  }
+	  prev_second = second;
+	  second++;
+	  HAL_Delay(10);
+
+    /* USER CODE END WHILE */
  80002cc:	b480      	push	{r7}
  80002ce:	af00      	add	r7, sp, #0
   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
@@ -372,10 +372,10 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  80002d0:	b672      	cpsid	i
 }
  80002d2:	bf00      	nop
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
  80002d4:	e7fe      	b.n	80002d4 <Error_Handler+0x8>
 	...
 
