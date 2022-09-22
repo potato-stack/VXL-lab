@@ -1,7 +1,20 @@
-09:40:41 **** Incremental Build of configuration Debug for project Led_blinkin ****
+09:50:45 **** Incremental Build of configuration Debug for project Led_blinkin ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Led_blinkin.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\hatru\OneDrive\Desktop\VXL\VXL-lab\lab1\ex\Led_blinkin\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Led_blinkin.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Led_blinkin.elf
+ 
 arm-none-eabi-size   Led_blinkin.elf 
+arm-none-eabi-objdump -h -S  Led_blinkin.elf  > "Led_blinkin.list"
+arm-none-eabi-objcopy  -O ihex  Led_blinkin.elf  "Led_blinkin.hex"
+arm-none-eabi-objcopy  -O binary  Led_blinkin.elf  "Led_blinkin.bin"
    text	   data	    bss	    dec	    hex	filename
    4612	     20	   1572	   6204	   183c	Led_blinkin.elf
 Finished building: default.size.stdout
+ 
+Finished building: Led_blinkin.hex
+Finished building: Led_blinkin.bin
+ 
+Finished building: Led_blinkin.list
+ 
  
