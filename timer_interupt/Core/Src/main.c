@@ -245,7 +245,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
+  setTimer1(25);
   setTimer2(51);
   //int led_status = 0;
   int led_red_status = 0;
@@ -254,7 +254,7 @@ int main(void)
   {
     if(timer2_flag == 1)
     {
-    	setTimer2(51);
+    	setTimer2(50);
     	if(led_red_status == 0)
     	 {
     	    HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);
@@ -268,7 +268,7 @@ int main(void)
     }
 	if(timer1_flag == 1)
 	{
-    	setTimer1(50);
+    	setTimer1(25);
     	if(index_led > 3) index_led = 0;
     	update7SEG(index_led++);
     }

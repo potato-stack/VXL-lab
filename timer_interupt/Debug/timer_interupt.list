@@ -856,8 +856,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
- 8000690:	2032      	movs	r0, #50	; 0x32
+  setTimer1(25);
+ 8000690:	2019      	movs	r0, #25
  8000692:	f7ff fd5b 	bl	800014c <setTimer1>
   setTimer2(51);
  8000696:	2033      	movs	r0, #51	; 0x33
@@ -876,8 +876,8 @@ int main(void)
  80006a8:	2b01      	cmp	r3, #1
  80006aa:	d114      	bne.n	80006d6 <main+0x66>
     {
-    	setTimer2(51);
- 80006ac:	2033      	movs	r0, #51	; 0x33
+    	setTimer2(50);
+ 80006ac:	2032      	movs	r0, #50	; 0x32
  80006ae:	f7ff fd61 	bl	8000174 <setTimer2>
     	if(led_red_status == 0)
  80006b2:	687b      	ldr	r3, [r7, #4]
@@ -912,8 +912,8 @@ int main(void)
  80006da:	2b01      	cmp	r3, #1
  80006dc:	d1e2      	bne.n	80006a4 <main+0x34>
 	{
-    	setTimer1(50);
- 80006de:	2032      	movs	r0, #50	; 0x32
+    	setTimer1(25);
+ 80006de:	2019      	movs	r0, #25
  80006e0:	f7ff fd34 	bl	800014c <setTimer1>
     	if(index_led > 3) index_led = 0;
  80006e4:	4b0b      	ldr	r3, [pc, #44]	; (8000714 <main+0xa4>)
