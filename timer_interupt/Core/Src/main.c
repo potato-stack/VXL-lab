@@ -170,6 +170,20 @@ void led_reset()
 	HAL_GPIO_WritePin(SEG5_GPIO_Port, SEG5_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(SEG6_GPIO_Port, SEG6_Pin, GPIO_PIN_SET);
 }
+const int MAX_LED = 4;
+int index_led = 0;
+int led_buffer[4] = {1,2,3,4};
+void update7SEG(int index)
+{
+	switch(index)
+	{
+	case 0: display7SEG(led_buffer[1]); break;
+	case 1: display7SEG(led_buffer[2]); break;
+	case 2: display7SEG(led_buffer[3]); break;
+	case 3: display7SEG(led_buffer[4]); break;
+	default: break;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -208,25 +222,29 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer1(50);
+  setTimer2(51);
   int led_status = 0;
   int led_red_status = 0;
   led_reset();
   while (1)
   {
-    if(timer1_flag == 1)
+    if(timer2_flag == 1)
     {
-    	setTimer1(50);
-    	led_reset();
+    	setTimer2(51);
     	if(led_red_status == 0)
-    	{
-    		HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);
-    		led_red_status = 1;
-    	}
-    	else
-    	{
-    		HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, RESET);
-    		led_red_status = 0;
-    	}
+    	 {
+    	    HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, SET);
+    	    led_red_status = 1;
+    	 }
+    	 else
+    	 {
+    	    HAL_GPIO_WritePin(DOT_GPIO_Port, DOT_Pin, RESET);
+    	    led_red_status = 0;
+    	 }
+    }
+	if(timer1_flag == 1)
+	{
+    	setTimer1(50);
     	if(led_status == 0)
     	{
     	   HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_RESET);
