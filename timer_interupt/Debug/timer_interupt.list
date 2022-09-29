@@ -956,8 +956,8 @@ int main(void)
   //setTimer1(25);
   //setTimer2(49);
   //setTimer3(101);
-  setTimer4(23);
- 80007b8:	2017      	movs	r0, #23
+  setTimer4(11);
+ 80007b8:	200b      	movs	r0, #11
  80007ba:	f7ff fcc7 	bl	800014c <setTimer4>
   setTimer5(161);
  80007be:	20a1      	movs	r0, #161	; 0xa1
@@ -981,8 +981,8 @@ int main(void)
  80007d4:	2b01      	cmp	r3, #1
  80007d6:	d129      	bne.n	800082c <main+0x94>
 	{
-		setTimer4(20);
- 80007d8:	2014      	movs	r0, #20
+		setTimer4(10);
+ 80007d8:	200a      	movs	r0, #10
  80007da:	f7ff fcb7 	bl	800014c <setTimer4>
 		if(index_led_matrix > 7)
  80007de:	4b1a      	ldr	r3, [pc, #104]	; (8000848 <main+0xb0>)
@@ -1044,8 +1044,8 @@ int main(void)
  8000830:	2b01      	cmp	r3, #1
  8000832:	d1cd      	bne.n	80007d0 <main+0x38>
 	{
-		setTimer5(160);
- 8000834:	20a0      	movs	r0, #160	; 0xa0
+		setTimer5(80);
+ 8000834:	2050      	movs	r0, #80	; 0x50
  8000836:	f7ff fc9d 	bl	8000174 <setTimer5>
 		updateLedBuffer();
  800083a:	f7ff ff83 	bl	8000744 <updateLedBuffer>

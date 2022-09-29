@@ -379,7 +379,7 @@ int main(void)
   //setTimer1(25);
   //setTimer2(49);
   //setTimer3(101);
-  setTimer4(23);
+  setTimer4(11);
   setTimer5(161);
   //int led_status = 0;
   int led_red_status = 0;
@@ -429,7 +429,7 @@ int main(void)
 	}*/
 	if(timer4_flag == 1)
 	{
-		setTimer4(20);
+		setTimer4(10);
 		if(index_led_matrix > 7)
 		{
 					index_led_matrix = 0;
@@ -448,9 +448,8 @@ int main(void)
 	}
 	if(timer5_flag == 1)
 	{
-		setTimer5(160);
+		setTimer5(80);
 		updateLedBuffer();
-
 	}
 
 
