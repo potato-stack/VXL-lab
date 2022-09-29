@@ -208,6 +208,14 @@ void update7SEG(int index)
 		break;
 	}
 }
+int hour = 15 , minute = 9 , second = 58;
+void updateClockBuffer()
+{
+	led_buffer[0] = hour/10;
+	led_buffer[1] = hour%10;
+	led_buffer[2] = minute/10;
+	led_buffer[3] = minute%10;
+}
 /* USER CODE END 0 */
 
 /**
@@ -247,6 +255,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   setTimer1(25);
   setTimer2(51);
+  setTimer3(101);
   //int led_status = 0;
   int led_red_status = 0;
   led_reset();
@@ -272,6 +281,28 @@ int main(void)
     	if(index_led > 3) index_led = 0;
     	update7SEG(index_led++);
     }
+	if(timer3_flag == 1)
+	{
+		setTimer3(100);
+		second++;
+		if (second >= 60)
+		{
+		   second = 0;
+		   minute++;
+		}
+		if(minute >= 60)
+		{
+		   minute = 0;
+		   hour++;
+		}
+		if(hour >=24)
+		{
+		   hour = 0;
+		}
+		updateClockBuffer();
+	}
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
