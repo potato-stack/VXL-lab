@@ -16,13 +16,13 @@ int KeyReg3 = NORMAL_STATE;
 int TimeOutForKeyPress =  100;
 void subKeyProcess(){
 	if(KeyReg3 == PRESSED_STATE){
-		HAL_GPIO_TogglePin(led_GPIO_Port, led_Pin);
+		HAL_GPIO_TogglePin(Led_green_GPIO_Port, Led_green_Pin);
 	}
 }
 void getKeyInput(){
   KeyReg2 = KeyReg1;
   KeyReg1 = KeyReg0;
-  KeyReg0 = HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin);
+  //KeyReg0 = HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin);
   if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){
     if (KeyReg2 != KeyReg3){
       KeyReg3 = KeyReg2;
