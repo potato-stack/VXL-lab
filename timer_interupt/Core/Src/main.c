@@ -327,7 +327,6 @@ void updateLEDMatrix(int index){
     }
 }
 uint8_t row_display_value[8] = {0x18,0x3C,0X66,0X66,0X7E,0X7E,0X66,0X66};
-uint8_t temp_value = 0x18;
 void updateLedBuffer()
 {
 	matrix_buffer[7] = row_display_value[7];
@@ -379,7 +378,7 @@ int main(void)
   //setTimer1(25);
   //setTimer2(49);
   //setTimer3(101);
-  setTimer4(11);
+  setTimer4(20);
   setTimer5(161);
   //int led_status = 0;
   int led_red_status = 0;
@@ -429,26 +428,23 @@ int main(void)
 	}*/
 	if(timer4_flag == 1)
 	{
-		setTimer4(10);
+		setTimer4(20);
 		if(index_led_matrix > 7)
 		{
-					index_led_matrix = 0;
-		}
-		if(index_led_matrix == 7)
-		{
-			row_display_value[index_led_matrix] = temp_value;
-			temp_value = row_display_value[0];
-		}
-		else
-		{
-			row_display_value[index_led_matrix] = row_display_value[index_led_matrix+1];
+			index_led_matrix = 0;
 		}
 		updateLEDMatrix(index_led_matrix++);
 
 	}
 	if(timer5_flag == 1)
 	{
-		setTimer5(80);
+		setTimer5(161);
+		uint8_t temp_value = row_display_value[0];
+		 for( int i = 1; i < 8; i++)
+		{
+			row_display_value[i-1] = row_display_value[i];
+		}
+		row_display_value[7] = temp_value;
 		updateLedBuffer();
 	}
 
