@@ -243,63 +243,52 @@ void matrixReset()
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
-void updateLEDMatrix(int index){
+void updateLEDMatrix(int index)
+{
+	matrixReset();
     switch (index){
         case 0:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
-            break;
+        	break;
         case 1:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM1_GPIO_Port, ENM1_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
             break;
         case 2:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM2_GPIO_Port, ENM2_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
         	break;
         case 3:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM3_GPIO_Port, ENM3_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
         	break;
         case 4:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM4_GPIO_Port, ENM4_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
         	break;
         case 5:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM5_GPIO_Port, ENM5_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
         	break;
         case 6:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM6_GPIO_Port, ENM6_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
         	break;
         case 7:
-        	matrixReset();
         	HAL_GPIO_WritePin(ENM7_GPIO_Port, ENM7_Pin, RESET);
-        	matrixLedDisplay(matrix_buffer[index]);
         	break;
         default:
             break;
     }
+    matrixLedDisplay(matrix_buffer[index]);
 }
 uint8_t row_display_value[8] = {0x00,0xFC,0XFE,0X33,0X33,0XFE,0XFC,0X00};
+int shift = 0;
 void updateLedBuffer()
 {
-	matrix_buffer[7] = row_display_value[7];
-	matrix_buffer[6] = row_display_value[6];
-	matrix_buffer[5] = row_display_value[5];
-	matrix_buffer[4] = row_display_value[4];
-	matrix_buffer[3] = row_display_value[3];
-	matrix_buffer[2] = row_display_value[2];
-	matrix_buffer[1] = row_display_value[1];
-	matrix_buffer[0] = row_display_value[0];
+	shift = shift%8;
+	matrix_buffer[7] = row_display_value[(7+shift)%8];
+	matrix_buffer[6] = row_display_value[(6+shift)%8];
+	matrix_buffer[5] = row_display_value[(5+shift)%8];
+	matrix_buffer[4] = row_display_value[(4+shift)%8];
+	matrix_buffer[3] = row_display_value[(3+shift)%8];
+	matrix_buffer[2] = row_display_value[(2+shift)%8];
+	matrix_buffer[1] = row_display_value[(1+shift)%8];
+	matrix_buffer[0] = row_display_value[(0+shift)%8];
 }
 /* USER CODE END 0 */
 
@@ -341,8 +330,8 @@ int main(void)
   //setTimer1(25);
   //setTimer2(49);
   //setTimer3(101);
-  setTimer4(5);
-  setTimer5(41);
+  setTimer4(4);
+  setTimer5(32);
   //int led_status = 0;
   int led_red_status = 0;
   led_reset();
@@ -391,35 +380,26 @@ int main(void)
 	}*/
 	if(timer4_flag == 1)
 	{
-		setTimer4(5);
-		/*if(update_time == 8)
-		{
-			uint8_t temp_value = row_display_value[0];
-			for( int i = 1; i < 8; i++)
-			{
-				row_display_value[i-1] = row_display_value[i];
-			}
-				row_display_value[7] = temp_value;
-				updateLedBuffer();
-				update_time = 0;
-		}*/
+		setTimer4(4);
 		if(index_led_matrix > 7)
 		{
 			index_led_matrix = 0;
 		}
-		updateLEDMatrix(index_led_matrix++);
+		updateLEDMatrix(index_led_matrix);
+		index_led_matrix++;
 		//update_time++;
 
 	}
 	if(timer5_flag == 1)
 	{
-		setTimer5(40);
-		uint8_t temp_value = row_display_value[0];
-		 for( int i = 1; i < 8; i++)
+		setTimer5(32);
+		/*uint8_t temp_value = row_display_value[0];
+		for( int i = 1; i < 8; i++)
 		{
 			row_display_value[i-1] = row_display_value[i];
 		}
-		row_display_value[7] = temp_value;
+		row_display_value[7] = temp_value;*/
+		shift++;
 		updateLedBuffer();
 	}
 
