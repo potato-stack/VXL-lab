@@ -208,7 +208,7 @@ void update7SEG(int index)
 		break;
 	}
 }
-int hour = 15 , minute = 9 , second = 58;
+int hour = 23 , minute = 59 , second = 59;
 void updateClockBuffer()
 {
 	led_buffer[0] = hour/10;
@@ -259,6 +259,7 @@ int main(void)
   //int led_status = 0;
   int led_red_status = 0;
   led_reset();
+  updateClockBuffer();
   while (1)
   {
     if(timer2_flag == 1)
