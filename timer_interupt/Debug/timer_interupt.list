@@ -620,8 +620,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
- 80004d4:	2032      	movs	r0, #50	; 0x32
+  setTimer1(1);
+ 80004d4:	2001      	movs	r0, #1
  80004d6:	f7ff fe39 	bl	800014c <setTimer1>
   int led_status = 0;
  80004da:	2300      	movs	r3, #0
