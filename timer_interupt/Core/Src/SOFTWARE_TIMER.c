@@ -22,6 +22,10 @@ void setTimer2( int duration)
 	timer2_counter = duration;
 	timer2_flag = 0;
 }
+void clearTimer1()
+{
+	setTimer1(0);
+}
 void timerRun()
 {
 	if(timer1_counter > 0)

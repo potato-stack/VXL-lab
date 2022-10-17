@@ -9,6 +9,7 @@
 int red_time;
 int yellow_time;
 int green_time;
+int status = 0;
 void set_red(int time)
 {
 	red_time = time;

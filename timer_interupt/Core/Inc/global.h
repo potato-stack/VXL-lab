@@ -13,7 +13,10 @@
 #define AUTO_GREEN 2
 #define AUTO_YELLOW 3
 
-int status;
+#define MAN_RED 11
+#define MAN_YELLOW 12
+#define MAN_GREEN 13
+extern int status;
 
 extern int red_time;
 extern int green_time;

@@ -8,6 +8,7 @@ C_SRCS += \
 ../Core/Src/INC_BUTTON.c \
 ../Core/Src/SOFTWARE_TIMER.c \
 ../Core/Src/fsm_automatic.c \
+../Core/Src/fsm_manual.c \
 ../Core/Src/global.c \
 ../Core/Src/main.c \
 ../Core/Src/stm32f1xx_hal_msp.c \
@@ -20,6 +21,7 @@ OBJS += \
 ./Core/Src/INC_BUTTON.o \
 ./Core/Src/SOFTWARE_TIMER.o \
 ./Core/Src/fsm_automatic.o \
+./Core/Src/fsm_manual.o \
 ./Core/Src/global.o \
 ./Core/Src/main.o \
 ./Core/Src/stm32f1xx_hal_msp.o \
@@ -32,6 +34,7 @@ C_DEPS += \
 ./Core/Src/INC_BUTTON.d \
 ./Core/Src/SOFTWARE_TIMER.d \
 ./Core/Src/fsm_automatic.d \
+./Core/Src/fsm_manual.d \
 ./Core/Src/global.d \
 ./Core/Src/main.d \
 ./Core/Src/stm32f1xx_hal_msp.d \
