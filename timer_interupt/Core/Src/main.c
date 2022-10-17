@@ -216,7 +216,7 @@ void updateClockBuffer()
 	led_buffer[2] = minute/10;
 	led_buffer[3] = minute%10;
 }
-int decode_bit = 0;
+//int decode_bit = 0;
 void matrixLedDisplay(uint8_t input)
 {
 	HAL_GPIO_WritePin(ROW0_GPIO_Port, ROW0_Pin, !(input & 0x1));
@@ -343,7 +343,7 @@ int main(void)
   //setTimer3(101);
   setTimer4(23);
   //int led_status = 0;
-  int led_red_status = 0;
+  //int led_red_status = 0;
   led_reset();
   while (1)
   {
