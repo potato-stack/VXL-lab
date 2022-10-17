@@ -197,13 +197,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(50);
+  setTimer1(1);
   int led_status = 0;
   while (1)
   {
     if(timer1_flag == 1)
     {
-    	setTimer1(50);
+    	setTimer1(500);
     	if(led_status == 1)
     	{
     		HAL_GPIO_WritePin(Led_red_GPIO_Port, Led_red_Pin, GPIO_PIN_RESET);
