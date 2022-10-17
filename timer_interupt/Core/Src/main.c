@@ -197,7 +197,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(1);
+  setTimer1(50);
   int led_status = 0;
   while (1)
   {
