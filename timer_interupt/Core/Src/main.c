@@ -24,7 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "SOFTWARE_TIMER.h"
 #include "INC_BUTTON.h"
-#include "fsm_automatic.h"
+//#include "fsm_automatic.h"
 #include "fsm_manual.h"
 /* USER CODE END Includes */
 
@@ -97,15 +97,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  status = 1;
-  setTimer1(1);
-  //HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
-  //HAL_GPIO_WritePin(GPIOA, Led_red_Pin, SET);
+  status = 0;
+  setTimer1(10);
   while (1)
   {
-	fsm_automatic_run();
-	//fsm_manual_run();
-	/* USER CODE END WHILE */
+	//fsm_automatic_run();
+	fsm_manual_run();
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -205,20 +203,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Led_red_Pin|Led_green_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, Led_red_Pin|Led_green_Pin|Led_yellow_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Led_red_Pin Led_green_Pin */
-  GPIO_InitStruct.Pin = Led_red_Pin|Led_green_Pin;
+  /*Configure GPIO pins : Led_red_Pin Led_green_Pin Led_yellow_Pin */
+  GPIO_InitStruct.Pin = Led_red_Pin|Led_green_Pin|Led_yellow_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : button_1_Pin */
-  GPIO_InitStruct.Pin = button_1_Pin;
+  /*Configure GPIO pins : button_1_Pin button_2_Pin */
+  GPIO_InitStruct.Pin = button_1_Pin|button_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(button_1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
@@ -226,7 +224,8 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
 	timerRun();
-	getKeyInput();
+	getKeyInput1();
+	getKeyInput2();
 }
 
 /* USER CODE END 4 */

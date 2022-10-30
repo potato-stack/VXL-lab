@@ -1,2 +1,4 @@
-INC_BUTTON.c:18:6:subKeyProcess	4	static
-INC_BUTTON.c:25:6:getKeyInput	8	static
+INC_BUTTON.c:26:6:subKeyProcess1	4	static
+INC_BUTTON.c:34:6:subKeyProcess2	4	static
+INC_BUTTON.c:42:6:getKeyInput1	8	static
+INC_BUTTON.c:68:6:getKeyInput2	8	static
