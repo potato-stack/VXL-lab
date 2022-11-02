@@ -6,79 +6,68 @@
  */
 #include "fsm_manual.h"
 #include "INC_BUTTON.h"
+#include "input_reading.h"
+#include "global.h"
+#include "display.h"
+
 void fsm_manual_run()
 {
 	switch(status)
 	{
-	case INIT:
-		HAL_GPIO_WritePin(GPIOA, Led_red_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, Led_yellow_Pin, SET);
-		status = MAN_RED;
 	case MAN_RED:
-		/*if(timer1_flag == 1)
-		{
-			status = AUTO_GREEN;
-			setTimer1(300);
-		}*/
-		HAL_GPIO_WritePin(GPIOA, Led_red_Pin, RESET);
-		HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, Led_yellow_Pin, SET);
-		if(button1_flag == 1)
-		{
-			//clearTimer1();
-		    status = MAN_GREEN;
-		    //setTimer1(1000);
-		    button1_flag = 0;
-		}
-		if(button2_flag == 1)
+		red_time_buffer = red_time;
+		red_blink();
+		if(button_flag[0] == 1)
 		{
 			status = MAN_YELLOW;
-			button2_flag = 0;
+			button_flag[0] = 0;
+		}
+		if(button_flag[1] == 1)
+		{
+			button_flag[1] = 0;
+			if(red_time_buffer >= 99)
+			{
+				red_time_buffer = 0;
+			}
+			red_time_buffer++;
 		}
 		break;
 	case MAN_GREEN:
-		/*if(timer1_flag == 1)
+		green_time_buffer = green_time;
+		green_blink();
+		if(button_flag[0] == 1)
 		{
-			status = AUTO_YELLOW;
-			setTimer1(200);
-		}*/
-		HAL_GPIO_WritePin(GPIOA, Led_red_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, Led_green_Pin, RESET);
-		HAL_GPIO_WritePin(GPIOA, Led_yellow_Pin, SET);
-		if(button1_flag == 1)
-		{
-			//clearTimer1();
-		    status = MAN_YELLOW;
-		    //setTimer1(1000);
-		    button1_flag = 0;
+			status = INIT;
+			button_flag[0] = 0;
+			clearTimer2();
+			setTimer1(10);
 		}
-		if(button2_flag == 1)
+		if(button_flag[1] == 1)
 		{
-			status = MAN_RED;
-			button2_flag = 0;
+			button_flag[1] = 0;
+			if(green_time_buffer >= 99)
+			{
+				green_time_buffer = 0;
+			}
+			green_time_buffer++;
 		}
 		break;
 	case MAN_YELLOW:
-		/*if(timer1_flag == 1)
-		{
-			status = AUTO_RED;
-			setTimer1(500);
-		}*/
-		HAL_GPIO_WritePin(GPIOA, Led_red_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
-		HAL_GPIO_WritePin(GPIOA, Led_yellow_Pin, RESET);
-		if(button1_flag == 1)
-		{
-			//clearTimer1();
-		    status = MAN_RED;
-		    //setTimer1(1000);
-		    button1_flag = 0;
-		}
-		if(button2_flag == 1)
+		yellow_time_buffer = yellow_time;
+		yellow_blink();
+		if(button_flag[0] == 1)
 		{
 			status = MAN_GREEN;
-			button2_flag = 0;
+			button_flag[0] = 0;
+		}
+		if(button_flag[1] == 1)
+		{
+			button_flag[1] = 0;
+			if(yellow_time_buffer >= 99)
+			{
+				yellow_time_buffer = 0;
+			}
+			yellow_time_buffer++;
 		}
 		break;
 	default:

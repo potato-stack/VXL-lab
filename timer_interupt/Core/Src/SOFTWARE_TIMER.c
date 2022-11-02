@@ -26,6 +26,10 @@ void clearTimer1()
 {
 	setTimer1(0);
 }
+void clearTimer2()
+{
+	setTimer2(0);
+}
 void timerRun()
 {
 	if(timer1_counter > 0)

@@ -6,9 +6,14 @@
  */
 #include "global.h"
 
-int red_time;
-int yellow_time;
-int green_time;
+int red_time = 0;
+int yellow_time = 0;
+int green_time = 0;
+
+int red_time_buffer = 0;
+int green_time_buffer = 0;
+int yellow_time_buffer = 0;
+
 int status = 0;
 void set_red(int time)
 {

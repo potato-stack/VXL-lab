@@ -12,7 +12,9 @@
 #include "global.h"
 #include "software_timer.h"
 #include "main.h"
-#include "INC_BUTTON.h"
+#include "input_reading.h"
+//#include "INC_BUTTON.h"
+
 
 void fsm_automatic_run();
 
