@@ -28,6 +28,7 @@
 #include "input_reading.h"
 #include "fsm_manual.h"
 #include "fsm_save.h"
+#include "display.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,6 +103,7 @@ int main(void)
   status = INIT;
   setTimer1(10);
   setTimer2(10);
+  setTimer3(10);
   red_time = 500;
   green_time = 300;
   yellow_time = 200;
@@ -109,8 +111,9 @@ int main(void)
   {
 	fsm_automatic_run();
 	fsm_manual_run();
-	fsm_save();
-    /* USER CODE END WHILE */
+	scan7SEG();
+	clock_display();
+	/* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }

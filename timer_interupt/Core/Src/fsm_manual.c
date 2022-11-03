@@ -15,59 +15,82 @@ void fsm_manual_run()
 	switch(status)
 	{
 	case MAN_RED:
-		red_time_buffer = red_time;
 		red_blink();
+		count_1 = red_time_buffer/100;
+		count_2 = 00;
 		if(button_flag[0] == 1)
 		{
 			status = MAN_YELLOW;
 			button_flag[0] = 0;
+			yellow_time_buffer = yellow_time;
 		}
 		if(button_flag[1] == 1)
 		{
 			button_flag[1] = 0;
-			if(red_time_buffer >= 99)
+			if(red_time_buffer >= 99*100)
 			{
 				red_time_buffer = 0;
 			}
-			red_time_buffer++;
+			red_time_buffer += 100;
+			count_1 = red_time_buffer/100;
+		}
+		if(button_flag[2] == 1)
+		{
+			button_flag[2] = 0;
+			set_red(red_time_buffer);
+			count_1 = 9;
 		}
 		break;
+	case MAN_YELLOW:
+			yellow_blink();
+			count_1 = yellow_time_buffer/100;
+			count_2 = 01;
+			if(button_flag[0] == 1)
+			{
+				status = MAN_GREEN;
+				button_flag[0] = 0;
+				green_time_buffer = green_time;
+			}
+			if(button_flag[1] == 1)
+			{
+				button_flag[1] = 0;
+				if(yellow_time_buffer >= 99*100)
+				{
+					yellow_time_buffer = 0;
+				}
+				yellow_time_buffer+= 100;
+			}
+			if(button_flag[2] == 1)
+			{
+				button_flag[2] = 0;
+				set_green(green_time_buffer);
+			}
+			break;
 	case MAN_GREEN:
-		green_time_buffer = green_time;
 		green_blink();
+		count_1 = green_time_buffer/100;
+		count_2 = 02;
 		if(button_flag[0] == 1)
 		{
 			status = INIT;
 			button_flag[0] = 0;
 			clearTimer2();
 			setTimer1(10);
+			setTimer4(100);
 		}
 		if(button_flag[1] == 1)
 		{
 			button_flag[1] = 0;
-			if(green_time_buffer >= 99)
+			if(green_time_buffer >= 99*100)
 			{
 				green_time_buffer = 0;
 			}
-			green_time_buffer++;
+			green_time_buffer+=100;
 		}
-		break;
-	case MAN_YELLOW:
-		yellow_time_buffer = yellow_time;
-		yellow_blink();
-		if(button_flag[0] == 1)
+		if(button_flag[2] == 1)
 		{
-			status = MAN_GREEN;
-			button_flag[0] = 0;
-		}
-		if(button_flag[1] == 1)
-		{
-			button_flag[1] = 0;
-			if(yellow_time_buffer >= 99)
-			{
-				yellow_time_buffer = 0;
-			}
-			yellow_time_buffer++;
+			button_flag[2] = 0;
+			set_green(green_time_buffer);
 		}
 		break;
 	default:

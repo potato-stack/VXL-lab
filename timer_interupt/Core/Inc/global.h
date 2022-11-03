@@ -32,7 +32,6 @@ extern int red_time_buffer;
 extern int green_time_buffer;
 extern int yellow_time_buffer;
 
-
 void set_red(int time);
 void set_green(int time);
 void set_yellow(int time);

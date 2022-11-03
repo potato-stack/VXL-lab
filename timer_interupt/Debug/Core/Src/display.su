@@ -1,0 +1,15 @@
+display.c:13:6:display7SEG	16	static
+display.c:110:6:update7SEG	16	static
+display.c:147:6:updateLedBuffer	4	static
+display.c:155:6:scan7SEG	8	static
+display.c:170:6:red_display	8	static
+display.c:176:6:clock_display	8	static
+display.c:185:6:green_display	8	static
+display.c:191:6:yellow_display	8	static
+display.c:197:6:red_1_display	8	static
+display.c:203:6:green_1_display	8	static
+display.c:209:6:yellow_1_display	8	static
+display.c:215:6:red_blink	8	static
+display.c:235:6:green_blink	8	static
+display.c:255:6:yellow_blink	8	static
+display.c:275:6:led_reset	8	static
