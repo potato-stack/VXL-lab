@@ -13,5 +13,5 @@
 //#include "INC_BUTTON.h"
 #include "input_reading.h"
 
-void fsm_manual_run();
+void fsm_simple_buttons_run();
 #endif /* INC_FSM_MANUAL_H_ */

@@ -1,6 +1,7 @@
 #include "input_reading.h"
 
-#define DURATION_FOR_AUTO_DECREASING 	100
+#define DURATION_FOR_PRESSING 			300
+#define DURATION_FOR_HOLDING			100
 #define BUTTON_IS_PRESSED				GPIO_PIN_RESET
 #define BUTTON_IS_RELEASED				GPIO_PIN_SET
 
@@ -11,14 +12,7 @@ static GPIO_PinState debounceButtonBuffer2[NO_OF_BUTTONS];
 int button_flag[NO_OF_BUTTONS];
 static uint16_t counterForButtonPress1s[NO_OF_BUTTONS];
 
-unsigned char is_button_pressed(unsigned char index)
-{
-	if(index >= NO_OF_BUTTONS) return 0;
-	return (buttonBuffer[index] == BUTTON_IS_PRESSED);
-}
-
 //unsigned char is_button_pressed_1s()
-
 
 void subkeyProcess(unsigned char i)
 {
@@ -52,21 +46,24 @@ void button_reading()
 				buttonBuffer[i] = debounceButtonBuffer2[i];
 				if(buttonBuffer[i] == BUTTON_IS_PRESSED)
 				{
-					counterForButtonPress1s[i] = DURATION_FOR_AUTO_DECREASING;
+					counterForButtonPress1s[i] = DURATION_FOR_PRESSING;
 					subkeyProcess(i);
 				}
 			}
 			else
 			{
-				counterForButtonPress1s[i]--;
-				if(counterForButtonPress1s[i] == 0)
+				if(i!=0)
 				{
-					if(buttonBuffer[i] == BUTTON_IS_PRESSED)
+					counterForButtonPress1s[i]--;
+					if(counterForButtonPress1s[i] == 0)
 					{
-						counterForButtonPress1s[i] = DURATION_FOR_AUTO_DECREASING;
-						subkeyProcess(i);
-					}
+						if(buttonBuffer[i] == BUTTON_IS_PRESSED)
+						{
+							counterForButtonPress1s[i] = DURATION_FOR_HOLDING;
+							subkeyProcess(i);
+						}
 
+					}
 				}
 			}
 		}

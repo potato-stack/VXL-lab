@@ -12,7 +12,7 @@
 #define NO_OF_BUTTONS		3
 extern int button_flag[NO_OF_BUTTONS];
 void button_reading();
-unsigned char is_button_pressed(unsigned char index);
+int if_keys_is_realease();
 
 
 //unsigned char is_button_pressed_1s(unsigned char index);

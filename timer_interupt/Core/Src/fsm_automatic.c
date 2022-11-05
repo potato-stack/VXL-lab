@@ -16,6 +16,8 @@
 
 void fsm_automatic_run()
 {
+	return;
+	/*
 	switch(status)
 		{
 		case INIT:
@@ -109,6 +111,6 @@ void fsm_automatic_run()
 			break;
 		default:
 			break;
-		}
+		}*/
 }
 
