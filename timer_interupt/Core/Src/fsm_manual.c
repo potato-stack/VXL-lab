@@ -15,66 +15,82 @@ void fsm_simple_buttons_run()
 	switch(status)
 	{
 	case INIT:
-		setTime();
-		clearTimer4();
-		status = RUNNING;
-	case RUNNING:
+		//setTime();
+		//setTimer2(10);
+		//clearTimer4();
+		status = MOD;
+	/*case AUTO:
+		if(timer2_flag ==  1)
+		{
+			setTimer2(CNT_DOWN_TIME);
+			display7SEG(count_1);
+			if(count_1 > 0) count_1--;
+		}
 		if(button_flag[0] == 1)
 		{
-			status = WAITING;
 			button_flag[0] = 0;
-			setTimer4(TIME_OUT);
+			status = Reset;
 			time = 0;
 			setTime();
+			setTimer4(TIME_OUT);
 		}
-		if(button_flag[1] == 1)
+		if(button_flag[1] == 1 || button_flag[2] == 1)
 		{
-			display7SEG(time);
-			clearTimer2();
-			status = WAITING;
 			button_flag[1] = 0;
-		}
-		if(button_flag[2] == 1)
-		{
-			display7SEG(time);
-			status = WAITING;
-			clearTimer2();
 			button_flag[2] = 0;
+			clearTimer2();
+			status = MOD;
 		}
-		break;
-
-	case WAITING:
+		break;*/
+	case MOD:
 		display7SEG(time);
 		if(button_flag[0] == 1)
 		{
 			button_flag[0] = 0;
-			setTimer4(TIME_OUT);
+			status = Reset;
 			time = 0;
-			setTime();
+			//setTime();
+			//setTimer4(TIME_OUT);
 		}
 		if(button_flag[1] == 1)
 		{
 			button_flag[1] = 0;
-			setTimer4(TIME_OUT);
 			if(time >= 9) time = 0;
 			else time++;
-			setTime();
+			//setTime();
+			//setTimer4(TIME_OUT);
 		}
 		if(button_flag[2] == 1)
 		{
 			button_flag[2] = 0;
-			setTimer4(TIME_OUT);
 			if(time <= 0) time = 9;
 			else time--;
-			setTime();
+			//setTime();
+			//setTimer4(TIME_OUT);
 		}
 		if(timer4_flag == 1)
 		{
-			status = RUNNING;
+			status = AUTO;
 			setTimer2(10);
-			clearTimer4();
+			//clearTimer4();
 		}
 		break;
+	case Reset:
+	{
+		display7SEG(0);
+		if(button_flag[1] == 1)
+		{
+			status = MOD;
+			button_flag[1] = 0;
+			//setTimer4(TIME_OUT);
+		}
+		if(button_flag[2] == 1)
+		{
+			status = MOD;
+			button_flag[2] = 0;
+			//setTimer4(TIME_OUT);
+		}
+	}
 	default:
 		break;
 	}

@@ -98,16 +98,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   status = INIT;
-  setTimer1(52);
-  setTimer2(25);
+  setTimer1(51);
   time = 9;
   while (1)
   {
 	fsm_simple_buttons_run();
-	clock_display();
 	red_blink();
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

@@ -9,7 +9,5 @@
 int status = 0;
 int time = 0;
 int count_1 = 0;
-void setTime()
-{
-	count_1 = time;
-}
+int blink_time = 50;
+

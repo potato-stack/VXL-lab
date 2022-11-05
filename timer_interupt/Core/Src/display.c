@@ -9,7 +9,6 @@
 #include "SOFTWARE_TIMER.h"
 #include "global.h"
 #define LED7PORT GPIOB
-int blink_time = 50;
 
 void display7SEG(int numb)
 {
@@ -108,21 +107,10 @@ void display7SEG(int numb)
 			break;
 	}
 }
-
-void clock_display()
+void setTime()
 {
-	if(timer2_flag == 1)
-	{
-		setTimer2(100);
-		display7SEG(count_1);
-		if(count_1 > 0)
-		{
-			count_1-=1;
-		}
-
-	}
+	count_1 = time;
 }
-
 void red_blink()
 {
 	if(timer1_flag == 1)

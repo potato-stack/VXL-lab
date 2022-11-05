@@ -41,7 +41,7 @@ void button_reading()
 		}
 		if((debounceButtonBuffer0[i] == debounceButtonBuffer1[i]) && (debounceButtonBuffer1[i] == debounceButtonBuffer2[i]))
 		{
-			if(buttonBuffer[i] != debounceButtonBuffer2[i])
+			if(buttonBuffer[i] != debounceButtonBuffer2[i])//button is pressed only
 			{
 				buttonBuffer[i] = debounceButtonBuffer2[i];
 				if(buttonBuffer[i] == BUTTON_IS_PRESSED)
@@ -50,7 +50,7 @@ void button_reading()
 					subkeyProcess(i);
 				}
 			}
-			else
+			else// button is hold
 			{
 				if(i!=0)
 				{

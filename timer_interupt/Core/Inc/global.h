@@ -9,13 +9,16 @@
 #define INC_GLOBAL_H_
 
 #define INIT 0
-#define RUNNING 1
-#define WAITING 2
+#define AUTO 1
+#define MOD 2
+#define Reset 	3
 
 #define TIME_OUT 1000
+#define CNT_DOWN_TIME 100
 extern int status;
 extern int time;
 extern int count_1;
+extern int blink_time;
 
-void setTime();
+
 #endif /* INC_GLOBAL_H_ */
