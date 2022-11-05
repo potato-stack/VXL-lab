@@ -27,7 +27,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/global.h ../Core/Inc/software_timer.h ../Core/Inc/main.h \
  ../Core/Inc/input_reading.h ../Core/Inc/input_reading.h \
  ../Core/Inc/fsm_manual.h ../Core/Inc/SOFTWARE_TIMER.h \
- ../Core/Inc/fsm_save.h ../Core/Inc/display.h
+ ../Core/Inc/display.h
 
 ../Core/Inc/main.h:
 
@@ -96,7 +96,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/fsm_manual.h:
 
 ../Core/Inc/SOFTWARE_TIMER.h:
-
-../Core/Inc/fsm_save.h:
 
 ../Core/Inc/display.h:

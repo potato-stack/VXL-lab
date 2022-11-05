@@ -27,7 +27,6 @@
 #include "fsm_automatic.h"
 #include "input_reading.h"
 #include "fsm_manual.h"
-#include "fsm_save.h"
 #include "display.h"
 /* USER CODE END Includes */
 
@@ -113,7 +112,7 @@ int main(void)
 	fsm_manual_run();
 	scan7SEG();
 	clock_display();
-	/* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }

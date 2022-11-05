@@ -3,7 +3,6 @@
 "./Core/Src/display.o"
 "./Core/Src/fsm_automatic.o"
 "./Core/Src/fsm_manual.o"
-"./Core/Src/fsm_save.o"
 "./Core/Src/global.o"
 "./Core/Src/input_reading.o"
 "./Core/Src/main.o"

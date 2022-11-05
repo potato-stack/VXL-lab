@@ -20,6 +20,8 @@ void yellow_blink();
 void led_reset();
 void scan7SEG();
 void clock_display();
+
+//external variable using for display
 extern int blink_time;
 extern int led_buffer[4];
 extern int count_1;

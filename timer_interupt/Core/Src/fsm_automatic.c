@@ -25,7 +25,7 @@ void fsm_automatic_run()
 			count_2 = green_time/100;
 			break;
 		case AUTO_RED_GREEN:
-			if(timer1_flag == 1)
+			if(timer1_flag == 1)//Auto code goes here
 			{
 				timer1_flag = 0;
 				status = AUTO_RED_YELLOW;
@@ -35,7 +35,7 @@ void fsm_automatic_run()
 				count_1 = red_time/100;
 				count_2 = green_time/100;
 			}
-			if(button_flag[0] == 1)
+			if(button_flag[0] == 1)//Manual code goes here
 			{
 				status = MAN_RED;
 				clearTimer1();
