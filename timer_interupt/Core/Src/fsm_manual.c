@@ -15,11 +15,14 @@ void fsm_simple_buttons_run()
 	switch(status)
 	{
 	case INIT:
-		//setTime();
-		//setTimer2(10);
-		//clearTimer4();
-		status = MOD;
-	/*case AUTO:
+		//save the time for counting down
+		//set timer2 for counting down
+		//timer 4 using for time out, we clear it since we dont using it in auto.
+		setTime();
+		setTimer2(10);
+		clearTimer4();
+		status = AUTO;
+	case AUTO:
 		if(timer2_flag ==  1)
 		{
 			setTimer2(CNT_DOWN_TIME);
@@ -41,7 +44,7 @@ void fsm_simple_buttons_run()
 			clearTimer2();
 			status = MOD;
 		}
-		break;*/
+		break;
 	case MOD:
 		display7SEG(time);
 		if(button_flag[0] == 1)
@@ -49,30 +52,32 @@ void fsm_simple_buttons_run()
 			button_flag[0] = 0;
 			status = Reset;
 			time = 0;
-			//setTime();
-			//setTimer4(TIME_OUT);
+			//save the time for counting down
+			setTime();
+			//set up timer4 for time out
+			setTimer4(TIME_OUT);
 		}
 		if(button_flag[1] == 1)
 		{
 			button_flag[1] = 0;
 			if(time >= 9) time = 0;
 			else time++;
-			//setTime();
-			//setTimer4(TIME_OUT);
+			setTime();
+			setTimer4(TIME_OUT);
 		}
 		if(button_flag[2] == 1)
 		{
 			button_flag[2] = 0;
 			if(time <= 0) time = 9;
 			else time--;
-			//setTime();
-			//setTimer4(TIME_OUT);
+			setTime();
+			setTimer4(TIME_OUT);
 		}
 		if(timer4_flag == 1)
 		{
 			status = AUTO;
 			setTimer2(10);
-			//clearTimer4();
+			clearTimer4();
 		}
 		break;
 	case Reset:
@@ -82,13 +87,13 @@ void fsm_simple_buttons_run()
 		{
 			status = MOD;
 			button_flag[1] = 0;
-			//setTimer4(TIME_OUT);
+			setTimer4(TIME_OUT);
 		}
 		if(button_flag[2] == 1)
 		{
 			status = MOD;
 			button_flag[2] = 0;
-			//setTimer4(TIME_OUT);
+			setTimer4(TIME_OUT);
 		}
 	}
 	default:
