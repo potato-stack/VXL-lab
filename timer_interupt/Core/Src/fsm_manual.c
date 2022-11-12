@@ -37,7 +37,7 @@ void fsm_manual_run()
 		if(button_flag[2] == 1)
 		{
 			button_flag[2] = 0;
-			set_red(red_time_buffer);
+			red_time = red_time_buffer;
 			count_1 = 9;
 		}
 		break;
@@ -63,7 +63,7 @@ void fsm_manual_run()
 			if(button_flag[2] == 1)
 			{
 				button_flag[2] = 0;
-				set_green(green_time_buffer);
+				yellow_time = yellow_time_buffer;
 			}
 			break;
 	case MOD_GREEN:
@@ -73,10 +73,12 @@ void fsm_manual_run()
 		if(button_flag[0] == 1)
 		{
 			status = INIT;
+			status1 = INIT;
 			button_flag[0] = 0;
 			clearTimer2();
 			setTimer1(10);
-			setTimer4(100);
+			setTimer5(13);
+			setTimer4(101);
 		}
 		if(button_flag[1] == 1)
 		{
@@ -90,7 +92,7 @@ void fsm_manual_run()
 		if(button_flag[2] == 1)
 		{
 			button_flag[2] = 0;
-			set_green(green_time_buffer);
+			green_time = green_time_buffer;
 		}
 		break;
 	default:

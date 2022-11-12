@@ -101,19 +101,22 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   status = INIT;
+  status1 = INIT;
   setTimer1(10);
-  setTimer2(10);
-  setTimer3(10);
+  setTimer2(11);
+  setTimer3(12);
+  setTimer5(13);
   red_time = 500;
   green_time = 300;
   yellow_time = 200;
   while (1)
   {
 	fsm_automatic_1_run();
+	fsm_automatic_2_run();
 	fsm_manual_run();
 	scan7SEG();
-	clock_display();
-	/* USER CODE END WHILE */
+	clock_update();
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -219,9 +222,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, S1_Pin|S2_Pin|S3_Pin|S11_Pin
-                          |S12_Pin|S13_Pin|S14_Pin|S4_Pin
-                          |S5_Pin|S6_Pin|S7_Pin|S8_Pin
-                          |S9_Pin|S10_Pin, GPIO_PIN_RESET);
+                          |S4_Pin|S5_Pin|S6_Pin|S7_Pin
+                          |S8_Pin|S9_Pin|S10_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Led_red_Pin Led_green_Pin Led_yellow_Pin Led_red_1_Pin
                            Led_green_1_Pin Led_yellow_1_Pin */
@@ -239,13 +241,11 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : S1_Pin S2_Pin S3_Pin S11_Pin
-                           S12_Pin S13_Pin S14_Pin S4_Pin
-                           S5_Pin S6_Pin S7_Pin S8_Pin
-                           S9_Pin S10_Pin */
+                           S4_Pin S5_Pin S6_Pin S7_Pin
+                           S8_Pin S9_Pin S10_Pin */
   GPIO_InitStruct.Pin = S1_Pin|S2_Pin|S3_Pin|S11_Pin
-                          |S12_Pin|S13_Pin|S14_Pin|S4_Pin
-                          |S5_Pin|S6_Pin|S7_Pin|S8_Pin
-                          |S9_Pin|S10_Pin;
+                          |S4_Pin|S5_Pin|S6_Pin|S7_Pin
+                          |S8_Pin|S9_Pin|S10_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

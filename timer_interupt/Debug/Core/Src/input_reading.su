@@ -1,3 +1,2 @@
-input_reading.c:14:15:is_button_pressed	16	static
-input_reading.c:23:6:subkeyProcess	16	static
-input_reading.c:27:6:button_reading	24	static
+input_reading.c:14:6:subkeyProcess	16	static
+input_reading.c:18:6:button_reading	24	static

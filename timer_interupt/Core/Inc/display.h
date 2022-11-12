@@ -19,7 +19,7 @@ void green_blink();
 void yellow_blink();
 void led_reset();
 void scan7SEG();
-void clock_display();
+void clock_update();
 extern int blink_time;
 extern int led_buffer[4];
 extern int count_1;

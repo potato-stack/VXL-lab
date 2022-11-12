@@ -11,15 +11,6 @@ static GPIO_PinState debounceButtonBuffer2[NO_OF_BUTTONS];
 int button_flag[NO_OF_BUTTONS];
 static uint16_t counterForButtonPress1s[NO_OF_BUTTONS];
 
-unsigned char is_button_pressed(unsigned char index)
-{
-	if(index >= NO_OF_BUTTONS) return 0;
-	return (buttonBuffer[index] == BUTTON_IS_PRESSED);
-}
-
-//unsigned char is_button_pressed_1s()
-
-
 void subkeyProcess(unsigned char i)
 {
 	button_flag[i] = 1;

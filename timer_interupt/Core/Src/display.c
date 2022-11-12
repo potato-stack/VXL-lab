@@ -142,8 +142,6 @@ void update7SEG(int index)
 			break;
 	}
 }
-int count_1 = 0;
-int count_2 = 0;
 void updateLedBuffer()
 {
 	led_buffer[0] = count_1/10;
@@ -166,6 +164,10 @@ void scan7SEG()
 		update7SEG(led_index);
 	}
 }
+
+
+
+
 int st = 0;
 void red_display()
 {
@@ -173,7 +175,10 @@ void red_display()
 	HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
 	HAL_GPIO_WritePin(GPIOA, Led_yellow_Pin, SET);
 }
-void clock_display()
+
+int count_1 = 0;
+int count_2 = 0;
+void clock_update()
 {
 	if(timer4_flag == 1)
 	{

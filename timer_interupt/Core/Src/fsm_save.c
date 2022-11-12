@@ -13,7 +13,7 @@ void fsm_save()
 	switch(status)
 	{
 	case SAVE_RED:
-		set_red(red_time_buffer);
+		//set_red(red_time_buffer);
 		if(button_flag[0] == 1)
 		{
 			status = MOD_GREEN;
@@ -21,7 +21,7 @@ void fsm_save()
 		}
 		break;
 	case SAVE_GREEN:
-		set_green(green_time_buffer);
+		//set_green(green_time_buffer);
 		if(button_flag[0] == 1)
 		{
 			status = MOD_YELLOW;
@@ -29,10 +29,10 @@ void fsm_save()
 		}
 	break;
 	case SAVE_YELLOW:
-		set_yellow(yellow_time_buffer);
+		//set_yellow(yellow_time_buffer);
 		if(button_flag[0] == 1)
 		{
-			status = AUTO_RED_GREEN;
+			status = AUTO_RED;
 			button_flag[0] = 0;
 		}
 		break;

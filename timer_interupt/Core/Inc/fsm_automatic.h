@@ -17,5 +17,5 @@
 
 
 void fsm_automatic_1_run();
-
+void fsm_automatic_2_run();
 #endif /* INC_FSM_AUTOMATIC_H_ */
