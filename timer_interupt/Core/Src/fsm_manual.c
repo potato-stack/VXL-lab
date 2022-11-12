@@ -14,13 +14,13 @@ void fsm_manual_run()
 {
 	switch(status)
 	{
-	case MAN_RED:
+	case MOD_RED:
 		red_blink();
 		count_1 = red_time_buffer/100;
 		count_2 = 00;
 		if(button_flag[0] == 1)
 		{
-			status = MAN_YELLOW;
+			status = MOD_YELLOW;
 			button_flag[0] = 0;
 			yellow_time_buffer = yellow_time;
 		}
@@ -41,13 +41,13 @@ void fsm_manual_run()
 			count_1 = 9;
 		}
 		break;
-	case MAN_YELLOW:
+	case MOD_YELLOW:
 			yellow_blink();
 			count_1 = yellow_time_buffer/100;
 			count_2 = 01;
 			if(button_flag[0] == 1)
 			{
-				status = MAN_GREEN;
+				status = MOD_GREEN;
 				button_flag[0] = 0;
 				green_time_buffer = green_time;
 			}
@@ -66,7 +66,7 @@ void fsm_manual_run()
 				set_green(green_time_buffer);
 			}
 			break;
-	case MAN_GREEN:
+	case MOD_GREEN:
 		green_blink();
 		count_1 = green_time_buffer/100;
 		count_2 = 02;

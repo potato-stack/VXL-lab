@@ -16,7 +16,7 @@ void fsm_save()
 		set_red(red_time_buffer);
 		if(button_flag[0] == 1)
 		{
-			status = MAN_GREEN;
+			status = MOD_GREEN;
 			button_flag[0] = 0;
 		}
 		break;
@@ -24,7 +24,7 @@ void fsm_save()
 		set_green(green_time_buffer);
 		if(button_flag[0] == 1)
 		{
-			status = MAN_YELLOW;
+			status = MOD_YELLOW;
 			button_flag[0] = 0;
 		}
 	break;

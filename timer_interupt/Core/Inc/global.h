@@ -14,9 +14,9 @@
 #define AUTO_YELLOW_RED 3
 #define AUTO_RED_GREEN 4
 
-#define MAN_RED 21
-#define MAN_YELLOW 22
-#define MAN_GREEN 23
+#define MOD_RED 21
+#define MOD_YELLOW 22
+#define MOD_GREEN 23
 
 #define SAVE_RED 31
 #define SAVE_YELLOW 32

@@ -39,9 +39,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_line   0000b4ed  00000000  00000000  0002db7a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00082400  00000000  00000000  00039067  2**0
+ 18 .debug_str    00082402  00000000  00000000  00039067  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000bb467  2**0
+ 19 .comment      00000053  00000000  00000000  000bb469  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00002a40  00000000  00000000  000bb4bc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -1449,21 +1449,21 @@ void led_reset()
  8000a92:	bd80      	pop	{r7, pc}
  8000a94:	40010800 	.word	0x40010800
 
-08000a98 <fsm_automatic_run>:
+08000a98 <fsm_automatic_1_run>:
 
 //#include "INC_BUTTON.h"
 
 
-void fsm_automatic_run()
+void fsm_automatic_1_run()
 {
  8000a98:	b580      	push	{r7, lr}
  8000a9a:	af00      	add	r7, sp, #0
 	switch(status)
- 8000a9c:	4b96      	ldr	r3, [pc, #600]	; (8000cf8 <fsm_automatic_run+0x260>)
+ 8000a9c:	4b96      	ldr	r3, [pc, #600]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000a9e:	681b      	ldr	r3, [r3, #0]
  8000aa0:	2b04      	cmp	r3, #4
- 8000aa2:	f200 811e 	bhi.w	8000ce2 <fsm_automatic_run+0x24a>
- 8000aa6:	a201      	add	r2, pc, #4	; (adr r2, 8000aac <fsm_automatic_run+0x14>)
+ 8000aa2:	f200 811e 	bhi.w	8000ce2 <fsm_automatic_1_run+0x24a>
+ 8000aa6:	a201      	add	r2, pc, #4	; (adr r2, 8000aac <fsm_automatic_1_run+0x14>)
  8000aa8:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
  8000aac:	08000ac1 	.word	0x08000ac1
  8000ab0:	08000b73 	.word	0x08000b73
@@ -1476,48 +1476,48 @@ void fsm_automatic_run()
  8000ac0:	200a      	movs	r0, #10
  8000ac2:	f7ff fb7f 	bl	80001c4 <setTimer4>
 			status = AUTO_RED_GREEN;
- 8000ac6:	4b8c      	ldr	r3, [pc, #560]	; (8000cf8 <fsm_automatic_run+0x260>)
+ 8000ac6:	4b8c      	ldr	r3, [pc, #560]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000ac8:	2204      	movs	r2, #4
  8000aca:	601a      	str	r2, [r3, #0]
 			count_1 = red_time/100;
- 8000acc:	4b8b      	ldr	r3, [pc, #556]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000acc:	4b8b      	ldr	r3, [pc, #556]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000ace:	681b      	ldr	r3, [r3, #0]
- 8000ad0:	4a8b      	ldr	r2, [pc, #556]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000ad0:	4a8b      	ldr	r2, [pc, #556]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000ad2:	fb82 1203 	smull	r1, r2, r2, r3
  8000ad6:	1152      	asrs	r2, r2, #5
  8000ad8:	17db      	asrs	r3, r3, #31
  8000ada:	1ad3      	subs	r3, r2, r3
- 8000adc:	4a89      	ldr	r2, [pc, #548]	; (8000d04 <fsm_automatic_run+0x26c>)
+ 8000adc:	4a89      	ldr	r2, [pc, #548]	; (8000d04 <fsm_automatic_1_run+0x26c>)
  8000ade:	6013      	str	r3, [r2, #0]
 			count_2 = green_time/100;
- 8000ae0:	4b89      	ldr	r3, [pc, #548]	; (8000d08 <fsm_automatic_run+0x270>)
+ 8000ae0:	4b89      	ldr	r3, [pc, #548]	; (8000d08 <fsm_automatic_1_run+0x270>)
  8000ae2:	681b      	ldr	r3, [r3, #0]
- 8000ae4:	4a86      	ldr	r2, [pc, #536]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000ae4:	4a86      	ldr	r2, [pc, #536]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000ae6:	fb82 1203 	smull	r1, r2, r2, r3
  8000aea:	1152      	asrs	r2, r2, #5
  8000aec:	17db      	asrs	r3, r3, #31
  8000aee:	1ad3      	subs	r3, r2, r3
- 8000af0:	4a86      	ldr	r2, [pc, #536]	; (8000d0c <fsm_automatic_run+0x274>)
+ 8000af0:	4a86      	ldr	r2, [pc, #536]	; (8000d0c <fsm_automatic_1_run+0x274>)
  8000af2:	6013      	str	r3, [r2, #0]
 			break;
- 8000af4:	e0fe      	b.n	8000cf4 <fsm_automatic_run+0x25c>
+ 8000af4:	e0fe      	b.n	8000cf4 <fsm_automatic_1_run+0x25c>
 		case AUTO_RED_GREEN:
 			if(timer1_flag == 1)
- 8000af6:	4b86      	ldr	r3, [pc, #536]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000af6:	4b86      	ldr	r3, [pc, #536]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000af8:	681b      	ldr	r3, [r3, #0]
  8000afa:	2b01      	cmp	r3, #1
- 8000afc:	d122      	bne.n	8000b44 <fsm_automatic_run+0xac>
+ 8000afc:	d122      	bne.n	8000b44 <fsm_automatic_1_run+0xac>
 			{
 				timer1_flag = 0;
- 8000afe:	4b84      	ldr	r3, [pc, #528]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000afe:	4b84      	ldr	r3, [pc, #528]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000b00:	2200      	movs	r2, #0
  8000b02:	601a      	str	r2, [r3, #0]
 				status = AUTO_RED_YELLOW;
- 8000b04:	4b7c      	ldr	r3, [pc, #496]	; (8000cf8 <fsm_automatic_run+0x260>)
+ 8000b04:	4b7c      	ldr	r3, [pc, #496]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000b06:	2201      	movs	r2, #1
  8000b08:	601a      	str	r2, [r3, #0]
 				setTimer1(green_time);
- 8000b0a:	4b7f      	ldr	r3, [pc, #508]	; (8000d08 <fsm_automatic_run+0x270>)
+ 8000b0a:	4b7f      	ldr	r3, [pc, #508]	; (8000d08 <fsm_automatic_1_run+0x270>)
  8000b0c:	681b      	ldr	r3, [r3, #0]
  8000b0e:	4618      	mov	r0, r3
  8000b10:	f7ff fb1c 	bl	800014c <setTimer1>
@@ -1526,34 +1526,34 @@ void fsm_automatic_run()
 				green_1_display();
  8000b18:	f7ff fecc 	bl	80008b4 <green_1_display>
 				count_1 = red_time/100;
- 8000b1c:	4b77      	ldr	r3, [pc, #476]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000b1c:	4b77      	ldr	r3, [pc, #476]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000b1e:	681b      	ldr	r3, [r3, #0]
- 8000b20:	4a77      	ldr	r2, [pc, #476]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000b20:	4a77      	ldr	r2, [pc, #476]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000b22:	fb82 1203 	smull	r1, r2, r2, r3
  8000b26:	1152      	asrs	r2, r2, #5
  8000b28:	17db      	asrs	r3, r3, #31
  8000b2a:	1ad3      	subs	r3, r2, r3
- 8000b2c:	4a75      	ldr	r2, [pc, #468]	; (8000d04 <fsm_automatic_run+0x26c>)
+ 8000b2c:	4a75      	ldr	r2, [pc, #468]	; (8000d04 <fsm_automatic_1_run+0x26c>)
  8000b2e:	6013      	str	r3, [r2, #0]
 				count_2 = green_time/100;
- 8000b30:	4b75      	ldr	r3, [pc, #468]	; (8000d08 <fsm_automatic_run+0x270>)
+ 8000b30:	4b75      	ldr	r3, [pc, #468]	; (8000d08 <fsm_automatic_1_run+0x270>)
  8000b32:	681b      	ldr	r3, [r3, #0]
- 8000b34:	4a72      	ldr	r2, [pc, #456]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000b34:	4a72      	ldr	r2, [pc, #456]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000b36:	fb82 1203 	smull	r1, r2, r2, r3
  8000b3a:	1152      	asrs	r2, r2, #5
  8000b3c:	17db      	asrs	r3, r3, #31
  8000b3e:	1ad3      	subs	r3, r2, r3
- 8000b40:	4a72      	ldr	r2, [pc, #456]	; (8000d0c <fsm_automatic_run+0x274>)
+ 8000b40:	4a72      	ldr	r2, [pc, #456]	; (8000d0c <fsm_automatic_1_run+0x274>)
  8000b42:	6013      	str	r3, [r2, #0]
 			}
 			if(button_flag[0] == 1)
- 8000b44:	4b73      	ldr	r3, [pc, #460]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000b44:	4b73      	ldr	r3, [pc, #460]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000b46:	681b      	ldr	r3, [r3, #0]
  8000b48:	2b01      	cmp	r3, #1
- 8000b4a:	f040 80cc 	bne.w	8000ce6 <fsm_automatic_run+0x24e>
+ 8000b4a:	f040 80cc 	bne.w	8000ce6 <fsm_automatic_1_run+0x24e>
 			{
-				status = MAN_RED;
- 8000b4e:	4b6a      	ldr	r3, [pc, #424]	; (8000cf8 <fsm_automatic_run+0x260>)
+				status = MOD_RED;
+ 8000b4e:	4b6a      	ldr	r3, [pc, #424]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000b50:	2215      	movs	r2, #21
  8000b52:	601a      	str	r2, [r3, #0]
 				clearTimer1();
@@ -1562,36 +1562,36 @@ void fsm_automatic_run()
  8000b58:	2019      	movs	r0, #25
  8000b5a:	f7ff fb0b 	bl	8000174 <setTimer2>
 				button_flag[0] = 0;
- 8000b5e:	4b6d      	ldr	r3, [pc, #436]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000b5e:	4b6d      	ldr	r3, [pc, #436]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000b60:	2200      	movs	r2, #0
  8000b62:	601a      	str	r2, [r3, #0]
 				red_time_buffer = red_time;
- 8000b64:	4b65      	ldr	r3, [pc, #404]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000b64:	4b65      	ldr	r3, [pc, #404]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000b66:	681b      	ldr	r3, [r3, #0]
- 8000b68:	4a6b      	ldr	r2, [pc, #428]	; (8000d18 <fsm_automatic_run+0x280>)
+ 8000b68:	4a6b      	ldr	r2, [pc, #428]	; (8000d18 <fsm_automatic_1_run+0x280>)
  8000b6a:	6013      	str	r3, [r2, #0]
 				clearTimer4();
  8000b6c:	f7ff fb4c 	bl	8000208 <clearTimer4>
 			}
 			break;
- 8000b70:	e0b9      	b.n	8000ce6 <fsm_automatic_run+0x24e>
+ 8000b70:	e0b9      	b.n	8000ce6 <fsm_automatic_1_run+0x24e>
 		case AUTO_RED_YELLOW:
 			if(timer1_flag == 1)
- 8000b72:	4b67      	ldr	r3, [pc, #412]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000b72:	4b67      	ldr	r3, [pc, #412]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000b74:	681b      	ldr	r3, [r3, #0]
  8000b76:	2b01      	cmp	r3, #1
- 8000b78:	d122      	bne.n	8000bc0 <fsm_automatic_run+0x128>
+ 8000b78:	d122      	bne.n	8000bc0 <fsm_automatic_1_run+0x128>
 			{
 				timer1_flag = 0;
- 8000b7a:	4b65      	ldr	r3, [pc, #404]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000b7a:	4b65      	ldr	r3, [pc, #404]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000b7c:	2200      	movs	r2, #0
  8000b7e:	601a      	str	r2, [r3, #0]
 				status = AUTO_GREEN_RED;
- 8000b80:	4b5d      	ldr	r3, [pc, #372]	; (8000cf8 <fsm_automatic_run+0x260>)
+ 8000b80:	4b5d      	ldr	r3, [pc, #372]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000b82:	2202      	movs	r2, #2
  8000b84:	601a      	str	r2, [r3, #0]
 				setTimer1(yellow_time);
- 8000b86:	4b65      	ldr	r3, [pc, #404]	; (8000d1c <fsm_automatic_run+0x284>)
+ 8000b86:	4b65      	ldr	r3, [pc, #404]	; (8000d1c <fsm_automatic_1_run+0x284>)
  8000b88:	681b      	ldr	r3, [r3, #0]
  8000b8a:	4618      	mov	r0, r3
  8000b8c:	f7ff fade 	bl	800014c <setTimer1>
@@ -1600,34 +1600,34 @@ void fsm_automatic_run()
 				yellow_1_display();
  8000b94:	f7ff fea4 	bl	80008e0 <yellow_1_display>
 				count_1 = yellow_time/100;
- 8000b98:	4b60      	ldr	r3, [pc, #384]	; (8000d1c <fsm_automatic_run+0x284>)
+ 8000b98:	4b60      	ldr	r3, [pc, #384]	; (8000d1c <fsm_automatic_1_run+0x284>)
  8000b9a:	681b      	ldr	r3, [r3, #0]
- 8000b9c:	4a58      	ldr	r2, [pc, #352]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000b9c:	4a58      	ldr	r2, [pc, #352]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000b9e:	fb82 1203 	smull	r1, r2, r2, r3
  8000ba2:	1152      	asrs	r2, r2, #5
  8000ba4:	17db      	asrs	r3, r3, #31
  8000ba6:	1ad3      	subs	r3, r2, r3
- 8000ba8:	4a56      	ldr	r2, [pc, #344]	; (8000d04 <fsm_automatic_run+0x26c>)
+ 8000ba8:	4a56      	ldr	r2, [pc, #344]	; (8000d04 <fsm_automatic_1_run+0x26c>)
  8000baa:	6013      	str	r3, [r2, #0]
 				count_2 = yellow_time/100;
- 8000bac:	4b5b      	ldr	r3, [pc, #364]	; (8000d1c <fsm_automatic_run+0x284>)
+ 8000bac:	4b5b      	ldr	r3, [pc, #364]	; (8000d1c <fsm_automatic_1_run+0x284>)
  8000bae:	681b      	ldr	r3, [r3, #0]
- 8000bb0:	4a53      	ldr	r2, [pc, #332]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000bb0:	4a53      	ldr	r2, [pc, #332]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000bb2:	fb82 1203 	smull	r1, r2, r2, r3
  8000bb6:	1152      	asrs	r2, r2, #5
  8000bb8:	17db      	asrs	r3, r3, #31
  8000bba:	1ad3      	subs	r3, r2, r3
- 8000bbc:	4a53      	ldr	r2, [pc, #332]	; (8000d0c <fsm_automatic_run+0x274>)
+ 8000bbc:	4a53      	ldr	r2, [pc, #332]	; (8000d0c <fsm_automatic_1_run+0x274>)
  8000bbe:	6013      	str	r3, [r2, #0]
 			}
 			if(button_flag[0] == 1)
- 8000bc0:	4b54      	ldr	r3, [pc, #336]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000bc0:	4b54      	ldr	r3, [pc, #336]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000bc2:	681b      	ldr	r3, [r3, #0]
  8000bc4:	2b01      	cmp	r3, #1
- 8000bc6:	f040 8090 	bne.w	8000cea <fsm_automatic_run+0x252>
+ 8000bc6:	f040 8090 	bne.w	8000cea <fsm_automatic_1_run+0x252>
 			{
-				status = MAN_RED;
- 8000bca:	4b4b      	ldr	r3, [pc, #300]	; (8000cf8 <fsm_automatic_run+0x260>)
+				status = MOD_RED;
+ 8000bca:	4b4b      	ldr	r3, [pc, #300]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000bcc:	2215      	movs	r2, #21
  8000bce:	601a      	str	r2, [r3, #0]
 				clearTimer1();
@@ -1636,36 +1636,36 @@ void fsm_automatic_run()
  8000bd4:	2019      	movs	r0, #25
  8000bd6:	f7ff facd 	bl	8000174 <setTimer2>
 				button_flag[0] = 0;
- 8000bda:	4b4e      	ldr	r3, [pc, #312]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000bda:	4b4e      	ldr	r3, [pc, #312]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000bdc:	2200      	movs	r2, #0
  8000bde:	601a      	str	r2, [r3, #0]
 				red_time_buffer = red_time;
- 8000be0:	4b46      	ldr	r3, [pc, #280]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000be0:	4b46      	ldr	r3, [pc, #280]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000be2:	681b      	ldr	r3, [r3, #0]
- 8000be4:	4a4c      	ldr	r2, [pc, #304]	; (8000d18 <fsm_automatic_run+0x280>)
+ 8000be4:	4a4c      	ldr	r2, [pc, #304]	; (8000d18 <fsm_automatic_1_run+0x280>)
  8000be6:	6013      	str	r3, [r2, #0]
 				clearTimer4();
  8000be8:	f7ff fb0e 	bl	8000208 <clearTimer4>
 			}
 			break;
- 8000bec:	e07d      	b.n	8000cea <fsm_automatic_run+0x252>
+ 8000bec:	e07d      	b.n	8000cea <fsm_automatic_1_run+0x252>
 		case AUTO_GREEN_RED:
 			if(timer1_flag == 1)
- 8000bee:	4b48      	ldr	r3, [pc, #288]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000bee:	4b48      	ldr	r3, [pc, #288]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000bf0:	681b      	ldr	r3, [r3, #0]
  8000bf2:	2b01      	cmp	r3, #1
- 8000bf4:	d122      	bne.n	8000c3c <fsm_automatic_run+0x1a4>
+ 8000bf4:	d122      	bne.n	8000c3c <fsm_automatic_1_run+0x1a4>
 			{
 				timer1_flag = 0;
- 8000bf6:	4b46      	ldr	r3, [pc, #280]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000bf6:	4b46      	ldr	r3, [pc, #280]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000bf8:	2200      	movs	r2, #0
  8000bfa:	601a      	str	r2, [r3, #0]
 				status = AUTO_YELLOW_RED;
- 8000bfc:	4b3e      	ldr	r3, [pc, #248]	; (8000cf8 <fsm_automatic_run+0x260>)
+ 8000bfc:	4b3e      	ldr	r3, [pc, #248]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000bfe:	2203      	movs	r2, #3
  8000c00:	601a      	str	r2, [r3, #0]
 				setTimer1(green_time);
- 8000c02:	4b41      	ldr	r3, [pc, #260]	; (8000d08 <fsm_automatic_run+0x270>)
+ 8000c02:	4b41      	ldr	r3, [pc, #260]	; (8000d08 <fsm_automatic_1_run+0x270>)
  8000c04:	681b      	ldr	r3, [r3, #0]
  8000c06:	4618      	mov	r0, r3
  8000c08:	f7ff faa0 	bl	800014c <setTimer1>
@@ -1674,108 +1674,108 @@ void fsm_automatic_run()
 				red_1_display();
  8000c10:	f7ff fe3a 	bl	8000888 <red_1_display>
 				count_1 = green_time/100;
- 8000c14:	4b3c      	ldr	r3, [pc, #240]	; (8000d08 <fsm_automatic_run+0x270>)
+ 8000c14:	4b3c      	ldr	r3, [pc, #240]	; (8000d08 <fsm_automatic_1_run+0x270>)
  8000c16:	681b      	ldr	r3, [r3, #0]
- 8000c18:	4a39      	ldr	r2, [pc, #228]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000c18:	4a39      	ldr	r2, [pc, #228]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000c1a:	fb82 1203 	smull	r1, r2, r2, r3
  8000c1e:	1152      	asrs	r2, r2, #5
  8000c20:	17db      	asrs	r3, r3, #31
  8000c22:	1ad3      	subs	r3, r2, r3
- 8000c24:	4a37      	ldr	r2, [pc, #220]	; (8000d04 <fsm_automatic_run+0x26c>)
+ 8000c24:	4a37      	ldr	r2, [pc, #220]	; (8000d04 <fsm_automatic_1_run+0x26c>)
  8000c26:	6013      	str	r3, [r2, #0]
 				count_2 = red_time/100;
- 8000c28:	4b34      	ldr	r3, [pc, #208]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000c28:	4b34      	ldr	r3, [pc, #208]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000c2a:	681b      	ldr	r3, [r3, #0]
- 8000c2c:	4a34      	ldr	r2, [pc, #208]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000c2c:	4a34      	ldr	r2, [pc, #208]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000c2e:	fb82 1203 	smull	r1, r2, r2, r3
  8000c32:	1152      	asrs	r2, r2, #5
  8000c34:	17db      	asrs	r3, r3, #31
  8000c36:	1ad3      	subs	r3, r2, r3
- 8000c38:	4a34      	ldr	r2, [pc, #208]	; (8000d0c <fsm_automatic_run+0x274>)
+ 8000c38:	4a34      	ldr	r2, [pc, #208]	; (8000d0c <fsm_automatic_1_run+0x274>)
  8000c3a:	6013      	str	r3, [r2, #0]
 			}
 			if(button_flag[0] == 1)
- 8000c3c:	4b35      	ldr	r3, [pc, #212]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000c3c:	4b35      	ldr	r3, [pc, #212]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000c3e:	681b      	ldr	r3, [r3, #0]
  8000c40:	2b01      	cmp	r3, #1
- 8000c42:	d154      	bne.n	8000cee <fsm_automatic_run+0x256>
+ 8000c42:	d154      	bne.n	8000cee <fsm_automatic_1_run+0x256>
 			{
-				status = MAN_RED;
- 8000c44:	4b2c      	ldr	r3, [pc, #176]	; (8000cf8 <fsm_automatic_run+0x260>)
+				status = MOD_RED;
+ 8000c44:	4b2c      	ldr	r3, [pc, #176]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000c46:	2215      	movs	r2, #21
  8000c48:	601a      	str	r2, [r3, #0]
 				clearTimer1();
  8000c4a:	f7ff facf 	bl	80001ec <clearTimer1>
 				setTimer2(blink_time);
- 8000c4e:	4b34      	ldr	r3, [pc, #208]	; (8000d20 <fsm_automatic_run+0x288>)
+ 8000c4e:	4b34      	ldr	r3, [pc, #208]	; (8000d20 <fsm_automatic_1_run+0x288>)
  8000c50:	681b      	ldr	r3, [r3, #0]
  8000c52:	4618      	mov	r0, r3
  8000c54:	f7ff fa8e 	bl	8000174 <setTimer2>
 				button_flag[0] = 0;
- 8000c58:	4b2e      	ldr	r3, [pc, #184]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000c58:	4b2e      	ldr	r3, [pc, #184]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000c5a:	2200      	movs	r2, #0
  8000c5c:	601a      	str	r2, [r3, #0]
 				red_time_buffer = red_time;
- 8000c5e:	4b27      	ldr	r3, [pc, #156]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000c5e:	4b27      	ldr	r3, [pc, #156]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000c60:	681b      	ldr	r3, [r3, #0]
- 8000c62:	4a2d      	ldr	r2, [pc, #180]	; (8000d18 <fsm_automatic_run+0x280>)
+ 8000c62:	4a2d      	ldr	r2, [pc, #180]	; (8000d18 <fsm_automatic_1_run+0x280>)
  8000c64:	6013      	str	r3, [r2, #0]
 				clearTimer4();
  8000c66:	f7ff facf 	bl	8000208 <clearTimer4>
 			}
 			break;
- 8000c6a:	e040      	b.n	8000cee <fsm_automatic_run+0x256>
+ 8000c6a:	e040      	b.n	8000cee <fsm_automatic_1_run+0x256>
 		case AUTO_YELLOW_RED:
 			if(timer1_flag == 1)
- 8000c6c:	4b28      	ldr	r3, [pc, #160]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000c6c:	4b28      	ldr	r3, [pc, #160]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000c6e:	681b      	ldr	r3, [r3, #0]
  8000c70:	2b01      	cmp	r3, #1
- 8000c72:	d120      	bne.n	8000cb6 <fsm_automatic_run+0x21e>
+ 8000c72:	d120      	bne.n	8000cb6 <fsm_automatic_1_run+0x21e>
 			{
 				timer1_flag = 0;
- 8000c74:	4b26      	ldr	r3, [pc, #152]	; (8000d10 <fsm_automatic_run+0x278>)
+ 8000c74:	4b26      	ldr	r3, [pc, #152]	; (8000d10 <fsm_automatic_1_run+0x278>)
  8000c76:	2200      	movs	r2, #0
  8000c78:	601a      	str	r2, [r3, #0]
 				status = AUTO_RED_GREEN;
- 8000c7a:	4b1f      	ldr	r3, [pc, #124]	; (8000cf8 <fsm_automatic_run+0x260>)
+ 8000c7a:	4b1f      	ldr	r3, [pc, #124]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000c7c:	2204      	movs	r2, #4
  8000c7e:	601a      	str	r2, [r3, #0]
 				setTimer1(yellow_time);
- 8000c80:	4b26      	ldr	r3, [pc, #152]	; (8000d1c <fsm_automatic_run+0x284>)
+ 8000c80:	4b26      	ldr	r3, [pc, #152]	; (8000d1c <fsm_automatic_1_run+0x284>)
  8000c82:	681b      	ldr	r3, [r3, #0]
  8000c84:	4618      	mov	r0, r3
  8000c86:	f7ff fa61 	bl	800014c <setTimer1>
 				yellow_display();
  8000c8a:	f7ff fde7 	bl	800085c <yellow_display>
 				count_1 = yellow_time/100;
- 8000c8e:	4b23      	ldr	r3, [pc, #140]	; (8000d1c <fsm_automatic_run+0x284>)
+ 8000c8e:	4b23      	ldr	r3, [pc, #140]	; (8000d1c <fsm_automatic_1_run+0x284>)
  8000c90:	681b      	ldr	r3, [r3, #0]
- 8000c92:	4a1b      	ldr	r2, [pc, #108]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000c92:	4a1b      	ldr	r2, [pc, #108]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000c94:	fb82 1203 	smull	r1, r2, r2, r3
  8000c98:	1152      	asrs	r2, r2, #5
  8000c9a:	17db      	asrs	r3, r3, #31
  8000c9c:	1ad3      	subs	r3, r2, r3
- 8000c9e:	4a19      	ldr	r2, [pc, #100]	; (8000d04 <fsm_automatic_run+0x26c>)
+ 8000c9e:	4a19      	ldr	r2, [pc, #100]	; (8000d04 <fsm_automatic_1_run+0x26c>)
  8000ca0:	6013      	str	r3, [r2, #0]
 				count_2 = yellow_time/100;
- 8000ca2:	4b1e      	ldr	r3, [pc, #120]	; (8000d1c <fsm_automatic_run+0x284>)
+ 8000ca2:	4b1e      	ldr	r3, [pc, #120]	; (8000d1c <fsm_automatic_1_run+0x284>)
  8000ca4:	681b      	ldr	r3, [r3, #0]
- 8000ca6:	4a16      	ldr	r2, [pc, #88]	; (8000d00 <fsm_automatic_run+0x268>)
+ 8000ca6:	4a16      	ldr	r2, [pc, #88]	; (8000d00 <fsm_automatic_1_run+0x268>)
  8000ca8:	fb82 1203 	smull	r1, r2, r2, r3
  8000cac:	1152      	asrs	r2, r2, #5
  8000cae:	17db      	asrs	r3, r3, #31
  8000cb0:	1ad3      	subs	r3, r2, r3
- 8000cb2:	4a16      	ldr	r2, [pc, #88]	; (8000d0c <fsm_automatic_run+0x274>)
+ 8000cb2:	4a16      	ldr	r2, [pc, #88]	; (8000d0c <fsm_automatic_1_run+0x274>)
  8000cb4:	6013      	str	r3, [r2, #0]
 			}
 			if(button_flag[0] == 1)
- 8000cb6:	4b17      	ldr	r3, [pc, #92]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000cb6:	4b17      	ldr	r3, [pc, #92]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000cb8:	681b      	ldr	r3, [r3, #0]
  8000cba:	2b01      	cmp	r3, #1
- 8000cbc:	d119      	bne.n	8000cf2 <fsm_automatic_run+0x25a>
+ 8000cbc:	d119      	bne.n	8000cf2 <fsm_automatic_1_run+0x25a>
 			{
-				status = MAN_RED;
- 8000cbe:	4b0e      	ldr	r3, [pc, #56]	; (8000cf8 <fsm_automatic_run+0x260>)
+				status = MOD_RED;
+ 8000cbe:	4b0e      	ldr	r3, [pc, #56]	; (8000cf8 <fsm_automatic_1_run+0x260>)
  8000cc0:	2215      	movs	r2, #21
  8000cc2:	601a      	str	r2, [r3, #0]
 				clearTimer1();
@@ -1784,32 +1784,32 @@ void fsm_automatic_run()
  8000cc8:	2019      	movs	r0, #25
  8000cca:	f7ff fa53 	bl	8000174 <setTimer2>
 				button_flag[0] = 0;
- 8000cce:	4b11      	ldr	r3, [pc, #68]	; (8000d14 <fsm_automatic_run+0x27c>)
+ 8000cce:	4b11      	ldr	r3, [pc, #68]	; (8000d14 <fsm_automatic_1_run+0x27c>)
  8000cd0:	2200      	movs	r2, #0
  8000cd2:	601a      	str	r2, [r3, #0]
 				red_time_buffer = red_time;
- 8000cd4:	4b09      	ldr	r3, [pc, #36]	; (8000cfc <fsm_automatic_run+0x264>)
+ 8000cd4:	4b09      	ldr	r3, [pc, #36]	; (8000cfc <fsm_automatic_1_run+0x264>)
  8000cd6:	681b      	ldr	r3, [r3, #0]
- 8000cd8:	4a0f      	ldr	r2, [pc, #60]	; (8000d18 <fsm_automatic_run+0x280>)
+ 8000cd8:	4a0f      	ldr	r2, [pc, #60]	; (8000d18 <fsm_automatic_1_run+0x280>)
  8000cda:	6013      	str	r3, [r2, #0]
 				clearTimer4();
  8000cdc:	f7ff fa94 	bl	8000208 <clearTimer4>
 			}
 			break;
- 8000ce0:	e007      	b.n	8000cf2 <fsm_automatic_run+0x25a>
+ 8000ce0:	e007      	b.n	8000cf2 <fsm_automatic_1_run+0x25a>
 		default:
 			break;
  8000ce2:	bf00      	nop
- 8000ce4:	e006      	b.n	8000cf4 <fsm_automatic_run+0x25c>
+ 8000ce4:	e006      	b.n	8000cf4 <fsm_automatic_1_run+0x25c>
 			break;
  8000ce6:	bf00      	nop
- 8000ce8:	e004      	b.n	8000cf4 <fsm_automatic_run+0x25c>
+ 8000ce8:	e004      	b.n	8000cf4 <fsm_automatic_1_run+0x25c>
 			break;
  8000cea:	bf00      	nop
- 8000cec:	e002      	b.n	8000cf4 <fsm_automatic_run+0x25c>
+ 8000cec:	e002      	b.n	8000cf4 <fsm_automatic_1_run+0x25c>
 			break;
  8000cee:	bf00      	nop
- 8000cf0:	e000      	b.n	8000cf4 <fsm_automatic_run+0x25c>
+ 8000cf0:	e000      	b.n	8000cf4 <fsm_automatic_1_run+0x25c>
 			break;
  8000cf2:	bf00      	nop
 		}
@@ -1876,7 +1876,7 @@ void fsm_manual_run()
  8000d62:	681b      	ldr	r3, [r3, #0]
  8000d64:	2b01      	cmp	r3, #1
  8000d66:	d109      	bne.n	8000d7c <fsm_manual_run+0x58>
-			status = MAN_YELLOW;
+			status = MOD_YELLOW;
  8000d68:	4b62      	ldr	r3, [pc, #392]	; (8000ef4 <fsm_manual_run+0x1d0>)
  8000d6a:	2216      	movs	r2, #22
  8000d6c:	601a      	str	r2, [r3, #0]
@@ -1965,7 +1965,7 @@ void fsm_manual_run()
  8000dfc:	681b      	ldr	r3, [r3, #0]
  8000dfe:	2b01      	cmp	r3, #1
  8000e00:	d109      	bne.n	8000e16 <fsm_manual_run+0xf2>
-				status = MAN_GREEN;
+				status = MOD_GREEN;
  8000e02:	4b3c      	ldr	r3, [pc, #240]	; (8000ef4 <fsm_manual_run+0x1d0>)
  8000e04:	2217      	movs	r2, #23
  8000e06:	601a      	str	r2, [r3, #0]
@@ -2459,15 +2459,15 @@ int main(void)
  8001106:	601a      	str	r2, [r3, #0]
   while (1)
   {
-	fsm_automatic_run();
- 8001108:	f7ff fcc6 	bl	8000a98 <fsm_automatic_run>
+	fsm_automatic_1_run();
+ 8001108:	f7ff fcc6 	bl	8000a98 <fsm_automatic_1_run>
 	fsm_manual_run();
  800110c:	f7ff fe0a 	bl	8000d24 <fsm_manual_run>
 	scan7SEG();
  8001110:	f7ff fb38 	bl	8000784 <scan7SEG>
 	clock_display();
  8001114:	f7ff fb70 	bl	80007f8 <clock_display>
-	fsm_automatic_run();
+	fsm_automatic_1_run();
  8001118:	e7f6      	b.n	8001108 <main+0x4c>
  800111a:	bf00      	nop
  800111c:	200000ac 	.word	0x200000ac

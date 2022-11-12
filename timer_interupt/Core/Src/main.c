@@ -109,7 +109,7 @@ int main(void)
   yellow_time = 200;
   while (1)
   {
-	fsm_automatic_run();
+	fsm_automatic_1_run();
 	fsm_manual_run();
 	scan7SEG();
 	clock_display();

@@ -14,7 +14,7 @@
 //#include "INC_BUTTON.h"
 
 
-void fsm_automatic_run()
+void fsm_automatic_1_run()
 {
 	switch(status)
 		{
@@ -37,7 +37,7 @@ void fsm_automatic_run()
 			}
 			if(button_flag[0] == 1)
 			{
-				status = MAN_RED;
+				status = MOD_RED;
 				clearTimer1();
 				setTimer2(25);
 				button_flag[0] = 0;
@@ -58,7 +58,7 @@ void fsm_automatic_run()
 			}
 			if(button_flag[0] == 1)
 			{
-				status = MAN_RED;
+				status = MOD_RED;
 				clearTimer1();
 				setTimer2(25);
 				button_flag[0] = 0;
@@ -79,7 +79,7 @@ void fsm_automatic_run()
 			}
 			if(button_flag[0] == 1)
 			{
-				status = MAN_RED;
+				status = MOD_RED;
 				clearTimer1();
 				setTimer2(blink_time);
 				button_flag[0] = 0;
@@ -99,7 +99,7 @@ void fsm_automatic_run()
 			}
 			if(button_flag[0] == 1)
 			{
-				status = MAN_RED;
+				status = MOD_RED;
 				clearTimer1();
 				setTimer2(25);
 				button_flag[0] = 0;

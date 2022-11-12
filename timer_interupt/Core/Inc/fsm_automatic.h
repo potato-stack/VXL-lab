@@ -16,6 +16,6 @@
 //#include "INC_BUTTON.h"
 
 
-void fsm_automatic_run();
+void fsm_automatic_1_run();
 
 #endif /* INC_FSM_AUTOMATIC_H_ */

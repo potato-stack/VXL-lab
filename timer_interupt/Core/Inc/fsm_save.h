@@ -10,7 +10,6 @@
 
 #include "global.h"
 #include "SOFTWARE_TIMER.h"
-//#include "INC_BUTTON.h"
 #include "input_reading.h"
 
 void fsm_save();
