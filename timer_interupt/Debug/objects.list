@@ -12,6 +12,8 @@
 "./Core/Src/system_stm32f1xx.o"
 "./Core/Startup/startup_stm32f103c6ux.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o"
+"./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.o"
+"./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.o"
@@ -24,3 +26,4 @@
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o"
+"./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o"

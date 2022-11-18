@@ -22,9 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-//#include "SOFTWARE_TIMER.h"
+#include "SOFTWARE_TIMER.h"
 #include "INC_BUTTON.h"
-#include "scheduler.h"
+#include <stdio.h>
+//#include "scheduler.h"
 //#include "fsm_automatic.h"
 //#include "fsm_manual.h"
 /* USER CODE END Includes */
@@ -46,6 +47,8 @@
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
 
+UART_HandleTypeDef huart2;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -54,6 +57,7 @@ TIM_HandleTypeDef htim2;
 void SystemClock_Config(void);
 static void MX_TIM2_Init(void);
 static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -67,15 +71,6 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-void led1test()
-{
-	  HAL_GPIO_TogglePin(Led_red_GPIO_Port, Led_red_Pin);
-}
-
-void led2test()
-{
-	HAL_GPIO_TogglePin(Led_green_GPIO_Port, Led_green_Pin);
-}
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -101,18 +96,26 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_TIM2_Init();
   MX_GPIO_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT (& htim2 ) ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  SCH_Add_Task(led1test, 50, 500);
-  SCH_Add_Task(led2test, 50, 200);
+  //SCH_Add_Task(led1test, 50, 500);
+  //SCH_Add_Task(led2test, 50, 200);
+  char str[50];
+  setTimer1(10);
   while (1)
   {
-	  SCH_Dispatch_Tasks();
-	/* USER CODE END WHILE */
+	  //SCH_Dispatch_Tasks();
+	  if(timer1_flag == 1)
+	  {
+	  	HAL_UART_Transmit(&huart2, str, sprintf(str, "%s","Hello\r\n"), 1000);
+	  	setTimer1(200);
+	  }
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -200,6 +203,39 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 9600;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -232,8 +268,9 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
-	SCH_Update();
-	getKeyInput();
+	//SCH_Update();
+	//getKeyInput();
+	timerRun();
 }
 
 /* USER CODE END 4 */
