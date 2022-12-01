@@ -31,6 +31,24 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim2;
+
+UART_HandleTypeDef huart2;
+
+/* USER CODE BEGIN PV */
 void Toggle_led1()
 {
 	HAL_GPIO_TogglePin(GPIOA, Led_1_Pin);
@@ -51,24 +69,17 @@ void Toggle_led5()
 {
 	HAL_GPIO_TogglePin(GPIOA, Led_5_Pin);
 }
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef htim2;
-
-UART_HandleTypeDef huart2;
-
-/* USER CODE BEGIN PV */
-
+void Print_TimeStamp()
+{
+	char str[30];
+	int temp = get_time();
+	HAL_UART_Transmit(&huart2, (void*)str, sprintf(str, "timestamp: %d\r", temp), 1000);
+}
+void Debug_Message(uint32_t input)
+{
+	char str[30];
+	HAL_UART_Transmit(&huart2, (void*)str, sprintf(str, "%ld\r", input), 1000);
+}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -121,12 +132,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  SCH_Add_Task(Toggle_led1, 50, 500);
-  SCH_Add_Task(Toggle_led2, 50, 1000);
-  SCH_Add_Task(Toggle_led3, 50, 1500);
-  SCH_Add_Task(Toggle_led4, 50, 2000);
-  //SCH_Add_Task(Toggle_led5, 2000, 0);
-  char str[10];
+  SCH_Init();
+  //SCH_Add_Task(Toggle_led1, 10, 10);
+  //SCH_Add_Task(Toggle_led2, 50, 1000);
+  //SCH_Add_Task(Toggle_led3, 50, 1500);
+  //SCH_Add_Task(Toggle_led4, 50, 2000);
+  //SCH_Add_Task(Print_TimeStamp, 10, 10);
+  SCH_Add_Task(Print_TimeStamp, 0, 20);
   while (1)
   {
 	  SCH_Dispatch_Tasks();
@@ -136,13 +148,7 @@ int main(void)
 		  button1_flag = 0;
 
 	  }
-	  if(flag == 1)
-	  {
-		  HAL_UART_Transmit(&huart2, (void*)str, sprintf(str, "%d\n\r", global_time), 1000);
-		  flag = 0;
-	  }
-
-    /* USER CODE END WHILE */
+   /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -301,7 +307,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
 	SCH_Update();
 	getKeyInput();
-	global_time+= 10;
+	update_time();
 	//timerRun();
 }
 

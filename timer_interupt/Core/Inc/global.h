@@ -19,5 +19,6 @@
 extern int status;
 
 extern int global_time;
-
+void update_time();
+int get_time();
 #endif /* INC_GLOBAL_H_ */

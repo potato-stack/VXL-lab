@@ -71,7 +71,8 @@ void Error_Handler(void);
 #define Led_5_Pin GPIO_PIN_9
 #define Led_5_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
-
+void Print_TimeStamp();
+void Debug_Message();
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

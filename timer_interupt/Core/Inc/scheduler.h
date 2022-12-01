@@ -10,7 +10,7 @@
 #include <stdint.h>
 #include "global.h"
 #include <stdio.h>
-extern int flag;
+
 typedef struct
 {
 	void (*pTask)(void);
