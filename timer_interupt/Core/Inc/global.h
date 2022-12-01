@@ -18,11 +18,6 @@
 #define MAN_GREEN 13
 extern int status;
 
-extern int red_time;
-extern int green_time;
-extern int yellow_time;
+extern int global_time;
 
-void set_red(int time);
-void set_green(int time);
-void set_yellow(int time);
 #endif /* INC_GLOBAL_H_ */

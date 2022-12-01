@@ -22,17 +22,35 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "SOFTWARE_TIMER.h"
+//#include "SOFTWARE_TIMER.h"
 #include "INC_BUTTON.h"
-#include <stdio.h>
-//#include "scheduler.h"
+#include "scheduler.h"
 //#include "fsm_automatic.h"
 //#include "fsm_manual.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+void Toggle_led1()
+{
+	HAL_GPIO_TogglePin(GPIOA, Led_1_Pin);
+}
+void Toggle_led2()
+{
+	HAL_GPIO_TogglePin(GPIOA, Led_2_Pin);
+}
+void Toggle_led3()
+{
+	HAL_GPIO_TogglePin(GPIOA, Led_3_Pin);
+}
+void Toggle_led4()
+{
+	HAL_GPIO_TogglePin(GPIOA, Led_4_Pin);
+}
+void Toggle_led5()
+{
+	HAL_GPIO_TogglePin(GPIOA, Led_5_Pin);
+}
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -103,18 +121,27 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //SCH_Add_Task(led1test, 50, 500);
-  //SCH_Add_Task(led2test, 50, 200);
-  char str[50];
-  setTimer1(10);
+  SCH_Add_Task(Toggle_led1, 50, 500);
+  SCH_Add_Task(Toggle_led2, 50, 1000);
+  SCH_Add_Task(Toggle_led3, 50, 1500);
+  SCH_Add_Task(Toggle_led4, 50, 2000);
+  //SCH_Add_Task(Toggle_led5, 2000, 0);
+  char str[10];
   while (1)
   {
-	  //SCH_Dispatch_Tasks();
-	  if(timer1_flag == 1)
+	  SCH_Dispatch_Tasks();
+	  if(button1_flag == 1)
 	  {
-	  	HAL_UART_Transmit(&huart2, str, sprintf(str, "%s","Hello\r\n"), 1000);
-	  	setTimer1(200);
+		  SCH_Add_Task(Toggle_led5, 2000, 0);
+		  button1_flag = 0;
+
 	  }
+	  if(flag == 1)
+	  {
+		  HAL_UART_Transmit(&huart2, (void*)str, sprintf(str, "%d\n\r", global_time), 1000);
+		  flag = 0;
+	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -246,12 +273,16 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Led_red_Pin|Led_green_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, Led_1_Pin|Led_2_Pin|Led_3_Pin|Led_4_Pin
+                          |Led_5_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Led_red_Pin Led_green_Pin */
-  GPIO_InitStruct.Pin = Led_red_Pin|Led_green_Pin;
+  /*Configure GPIO pins : Led_1_Pin Led_2_Pin Led_3_Pin Led_4_Pin
+                           Led_5_Pin */
+  GPIO_InitStruct.Pin = Led_1_Pin|Led_2_Pin|Led_3_Pin|Led_4_Pin
+                          |Led_5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -260,7 +291,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : button_1_Pin */
   GPIO_InitStruct.Pin = button_1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(button_1_GPIO_Port, &GPIO_InitStruct);
 
 }
@@ -268,9 +299,10 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
-	//SCH_Update();
-	//getKeyInput();
-	timerRun();
+	SCH_Update();
+	getKeyInput();
+	global_time+= 10;
+	//timerRun();
 }
 
 /* USER CODE END 4 */

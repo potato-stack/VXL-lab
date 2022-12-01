@@ -27,14 +27,18 @@ void getKeyInput(){
   KeyReg1 = KeyReg0;
   KeyReg0 = HAL_GPIO_ReadPin(button_1_GPIO_Port, button_1_Pin);
   if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){
-    if (KeyReg2 != KeyReg3){
+    if (KeyReg2 != KeyReg3)
+    {
       KeyReg3 = KeyReg2;
 
-      if (KeyReg3 == PRESSED_STATE){
+      if (KeyReg3 == PRESSED_STATE)
+      {
         TimeOutForKeyPress = 100;
         subKeyProcess();
       }
-    }else{
+    }
+    else
+    {
        TimeOutForKeyPress --;
         if (TimeOutForKeyPress == 0){
           KeyReg3 = NORMAL_STATE;

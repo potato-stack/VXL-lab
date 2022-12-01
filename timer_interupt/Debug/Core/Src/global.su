@@ -1,3 +1,0 @@
-global.c:13:6:set_red	16	static
-global.c:17:6:set_yellow	16	static
-global.c:21:6:set_green	16	static

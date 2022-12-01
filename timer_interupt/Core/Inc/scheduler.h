@@ -8,7 +8,9 @@
 #ifndef INC_SCHEDULER_H_
 #define INC_SCHEDULER_H_
 #include <stdint.h>
-
+#include "global.h"
+#include <stdio.h>
+extern int flag;
 typedef struct
 {
 	void (*pTask)(void);
@@ -19,6 +21,8 @@ typedef struct
 } sTasks;
 
 #define SCH_MAX_TASKS	40
+#define TIMER_CYCLE		10
+
 void SCH_Init(void);
 void SCH_Add_Task( void (*pFunction)(), uint32_t DELAY, uint32_t PERIOD);
 void SCH_Update(void);

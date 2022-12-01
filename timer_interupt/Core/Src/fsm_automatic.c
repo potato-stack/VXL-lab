@@ -20,8 +20,8 @@ void fsm_automatic_run()
 	case AUTO_RED:
 		if(timer1_flag == 1)
 		{
-			HAL_GPIO_WritePin(GPIOA, Led_red_Pin, SET);
-			HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
+			//HAL_GPIO_WritePin(GPIOA, Led_red_Pin, SET);
+			//HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
 			status = AUTO_GREEN;
 			setTimer1(300);
 		}
@@ -37,8 +37,8 @@ void fsm_automatic_run()
 		{
 			status = AUTO_RED;
 			setTimer1(200);
-		    HAL_GPIO_WritePin(Led_red_GPIO_Port, Led_red_Pin, SET);
-			HAL_GPIO_WritePin(Led_green_GPIO_Port, Led_green_Pin, SET);
+		    //HAL_GPIO_WritePin(Led_red_GPIO_Port, Led_red_Pin, SET);
+			//HAL_GPIO_WritePin(Led_green_GPIO_Port, Led_green_Pin, SET);
 		}
 		if(button1_flag == 1)
 		{
@@ -51,8 +51,8 @@ void fsm_automatic_run()
 		if(timer1_flag == 1)
 		{
 			status = AUTO_YELLOW;
-			HAL_GPIO_WritePin(GPIOA, Led_red_Pin, RESET);
-			HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
+			//HAL_GPIO_WritePin(GPIOA, Led_red_Pin, RESET);
+			//HAL_GPIO_WritePin(GPIOA, Led_green_Pin, SET);
 			setTimer1(500);
 		}
 		if(button1_flag == 1)

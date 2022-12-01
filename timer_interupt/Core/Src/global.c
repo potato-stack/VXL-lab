@@ -6,20 +6,7 @@
  */
 #include "global.h"
 
-int red_time;
-int yellow_time;
-int green_time;
+int global_time = 0;
 int status = 0;
-void set_red(int time)
-{
-	red_time = time;
-}
-void set_yellow(int time)
-{
-	yellow_time = time;
-}
-void set_green(int time)
-{
-	green_time = time;
-}
+
 
