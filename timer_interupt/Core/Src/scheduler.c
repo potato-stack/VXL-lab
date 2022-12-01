@@ -56,5 +56,31 @@ void SCH_Dispatch_Tasks(void)
 			(*SCH_tasks_G[i].pTask)();
 
 		}
+		if(SCH_tasks_G[i].Period == 0)
+		{
+			SCH_Delete_Task(i);
+		}
 	}
+}
+
+void SCH_Delete_Task(const uint8_t TASK_INDEX)
+{
+   if(TASK_INDEX >= current_index_task)
+   {
+	   return;
+   }
+   else
+   {
+	   for( int i = TASK_INDEX; i < current_index_task - 1; i++)
+	   {
+			SCH_tasks_G[i].pTask = SCH_tasks_G[i + 1].pTask;
+			SCH_tasks_G[i].Delay = SCH_tasks_G[i + 1].Delay;
+			SCH_tasks_G[i].Period = SCH_tasks_G[i + 1].Period;
+			SCH_tasks_G[i].RunMe = SCH_tasks_G[i + 1].RunMe;
+	   }
+	SCH_tasks_G[current_index_task].pTask = 0x0000;
+	SCH_tasks_G[current_index_task].Delay = 0;
+	SCH_tasks_G[current_index_task].Period = 0;
+	SCH_tasks_G[current_index_task].RunMe = 0;
+   }
 }
