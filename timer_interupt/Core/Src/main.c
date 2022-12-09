@@ -49,38 +49,7 @@ TIM_HandleTypeDef htim2;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-void Toggle_led1()
-{
-	HAL_GPIO_TogglePin(GPIOA, Led_1_Pin);
-}
-void Toggle_led2()
-{
-	HAL_GPIO_TogglePin(GPIOA, Led_2_Pin);
-}
-void Toggle_led3()
-{
-	HAL_GPIO_TogglePin(GPIOA, Led_3_Pin);
-}
-void Toggle_led4()
-{
-	HAL_GPIO_TogglePin(GPIOA, Led_4_Pin);
-}
-void Toggle_led5()
-{
-	HAL_GPIO_TogglePin(GPIOA, Led_5_Pin);
-}
-void Print_TimeStamp()
-{
-	char str[30];
-	int temp = get_time();
-	HAL_UART_Transmit(&huart2, (void*)str, sprintf(str, "timestamp: %d\r", temp), 1000);
-}
-void Print_TimeStamp2()
-{
-	char str[30];
-	int temp = get_time();
-	HAL_UART_Transmit(&huart2, (void*)str, sprintf(str, "timestamp 2: %d\r", temp), 1000);
-}
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -134,20 +103,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   SCH_Init();
-  SCH_Add_Task(Toggle_led1, 10, 500);
-  SCH_Add_Task(Toggle_led2, 50, 1000);
-  SCH_Add_Task(Toggle_led3, 50, 1500);
-  SCH_Add_Task(Toggle_led4, 50, 2000);
-  SCH_Add_Task(Print_TimeStamp2, 10, 500);
-  //SCH_Add_Task(Print_TimeStamp, 0, 20);
   while (1)
   {
 	  SCH_Dispatch_Tasks();
 	  if(button1_flag == 1)
 	  {
-		  SCH_Add_Task(Toggle_led5, 2000, 0);
 		  button1_flag = 0;
-
 	  }
    /* USER CODE END WHILE */
 
