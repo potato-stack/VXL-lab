@@ -7,18 +7,50 @@
 
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
-
+//===============DEFINE PART============================================================================================================
+//--------------------------------------------------all the state of finate state machine------------------------------------------------
+//Note: assume that red time always = green time + yellow time
 #define INIT 0
-#define AUTO_RED 1
-#define AUTO_GREEN 2
-#define AUTO_YELLOW 3
+#define AUTO_RED_GREEN 			1			//Red on first road, green on the second
+#define AUTO_RED_YELLOW 		2			//Red on first road, yellow on the second
+#define AUTO_GREEN_RED			3			//Green on first road, red on the second
+#define AUTO_YELLOW_RED			4			//Yellow on first road, red on the second
 
-#define MAN_RED 11
-#define MAN_YELLOW 12
-#define MAN_GREEN 13
-extern int status;
+#define MAN_RED_GREEN 			11			//Red on first road, green on the second
+#define MAN_RED_YELLOW 			12			//Red on first road, yellow on the second
+#define MAN_GREEN_RED			13			//Green on first road, red on the second
+#define MAN_YELLOW_RED			14			//Yellow on first road, red on the second
+
+//===============VARIABLES PART==========================================================================================================
+//-------------------------------------------------status of finate state machine--------------------------------------------------------
+extern int status1;
+extern int status2;
+//extern int status3;
+//extern int status4;
+
+//-------------------------------------------------leds' time variables--------------------------------------------------------------------
+extern int green_time;
+extern int red_time;
+extern int yellow_time;
+
+extern int timeout_duration;
+
+//-------------------------------------------------UART time display variables--------------------------------------------------------------------
+extern int count1;
+extern int count2;
+//===============TIME RELATED FUNCTION PART==========================================================================================================
+//-----------------------------------------------set time function----------------------------------------------------------------------
+//Note: since red = green + yellow, only need to set time for green and yellow
+void set_green_time(int time);
+void set_yellow_time(int time);
+void set_timeout_duration(int time);
+void set_road1_time(int time);
+void set_road2_time(int time);
+//------------------------------------this part is use for displaying interval time - not use----------------------------------------------
+
 
 extern int global_time;
 void update_time();
 int get_time();
+
 #endif /* INC_GLOBAL_H_ */

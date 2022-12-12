@@ -58,18 +58,26 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define Led_1_Pin GPIO_PIN_5
+#define button_1_Pin GPIO_PIN_1
+#define button_1_GPIO_Port GPIOA
+#define button_2_Pin GPIO_PIN_5
+#define button_2_GPIO_Port GPIOA
+#define button_3_Pin GPIO_PIN_0
+#define button_3_GPIO_Port GPIOB
+#define button_p_Pin GPIO_PIN_1
+#define button_p_GPIO_Port GPIOB
+#define Led_p_1_Pin GPIO_PIN_10
+#define Led_p_1_GPIO_Port GPIOB
+#define Led_p_2_Pin GPIO_PIN_8
+#define Led_p_2_GPIO_Port GPIOA
+#define Led_1_Pin GPIO_PIN_10
 #define Led_1_GPIO_Port GPIOA
-#define Led_2_Pin GPIO_PIN_6
-#define Led_2_GPIO_Port GPIOA
-#define Led_3_Pin GPIO_PIN_7
-#define Led_3_GPIO_Port GPIOA
-#define button_1_Pin GPIO_PIN_0
-#define button_1_GPIO_Port GPIOB
-#define Led_4_Pin GPIO_PIN_8
-#define Led_4_GPIO_Port GPIOA
-#define Led_5_Pin GPIO_PIN_9
-#define Led_5_GPIO_Port GPIOA
+#define Led_4_Pin GPIO_PIN_3
+#define Led_4_GPIO_Port GPIOB
+#define Led_3_Pin GPIO_PIN_4
+#define Led_3_GPIO_Port GPIOB
+#define Led_2_Pin GPIO_PIN_5
+#define Led_2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 void Print_TimeStamp();
 void Print_TimeStamp2();

@@ -7,9 +7,11 @@
 C_SRCS += \
 ../Core/Src/INC_BUTTON.c \
 ../Core/Src/SOFTWARE_TIMER.c \
+../Core/Src/display_control.c \
 ../Core/Src/fsm_automatic.c \
 ../Core/Src/fsm_manual.c \
 ../Core/Src/global.c \
+../Core/Src/input_reading.c \
 ../Core/Src/main.c \
 ../Core/Src/scheduler.c \
 ../Core/Src/stm32f1xx_hal_msp.c \
@@ -21,9 +23,11 @@ C_SRCS += \
 OBJS += \
 ./Core/Src/INC_BUTTON.o \
 ./Core/Src/SOFTWARE_TIMER.o \
+./Core/Src/display_control.o \
 ./Core/Src/fsm_automatic.o \
 ./Core/Src/fsm_manual.o \
 ./Core/Src/global.o \
+./Core/Src/input_reading.o \
 ./Core/Src/main.o \
 ./Core/Src/scheduler.o \
 ./Core/Src/stm32f1xx_hal_msp.o \
@@ -35,9 +39,11 @@ OBJS += \
 C_DEPS += \
 ./Core/Src/INC_BUTTON.d \
 ./Core/Src/SOFTWARE_TIMER.d \
+./Core/Src/display_control.d \
 ./Core/Src/fsm_automatic.d \
 ./Core/Src/fsm_manual.d \
 ./Core/Src/global.d \
+./Core/Src/input_reading.d \
 ./Core/Src/main.d \
 ./Core/Src/scheduler.d \
 ./Core/Src/stm32f1xx_hal_msp.d \

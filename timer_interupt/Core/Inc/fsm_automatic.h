@@ -12,7 +12,9 @@
 #include "global.h"
 #include "software_timer.h"
 #include "main.h"
-#include "INC_BUTTON.h"
+#include "input_reading.h"
+#include "display_control.h"
+//===============FINATE STATES MACHINE FUNCTION PART==========================================================================================================
 
 void fsm_automatic_run();
 

@@ -8,48 +8,46 @@
 #include "INC_BUTTON.h"
 void fsm_manual_run()
 {
-	switch(status)
+	switch(status1)
 	{
-	case MAN_RED:
+	case MAN_RED_GREEN:
 		if(timer1_flag == 1)
 		{
-			status = AUTO_GREEN;
-			setTimer1(300);
+
 		}
 		if(button1_flag == 1)
 		{
-			clearTimer1();
-		    status = MAN_GREEN;
-		    setTimer1(1000);
-		    button1_flag = 0;
+
 		}
 		break;
-	case MAN_GREEN:
+	case MAN_RED_YELLOW:
 		if(timer1_flag == 1)
 		{
-			status = AUTO_YELLOW;
-			setTimer1(200);
+
 		}
 		if(button1_flag == 1)
 		{
-			clearTimer1();
-		    status = MAN_YELLOW;
-		    setTimer1(1000);
-		    button1_flag = 0;
+
 		}
 		break;
-	case MAN_YELLOW:
+	case MAN_GREEN_RED:
 		if(timer1_flag == 1)
 		{
-			status = AUTO_RED;
-			setTimer1(500);
+
 		}
 		if(button1_flag == 1)
 		{
-			clearTimer1();
-		    status = MAN_RED;
-		    setTimer1(1000);
-		    button1_flag = 0;
+
+		}
+		break;
+	case MAN_YELLOW_RED:
+		if(timer1_flag == 1)
+		{
+
+		}
+		if(button1_flag == 1)
+		{
+
 		}
 		break;
 	default:

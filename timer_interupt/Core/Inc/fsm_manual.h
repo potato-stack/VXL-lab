@@ -10,7 +10,8 @@
 
 #include "global.h"
 #include "SOFTWARE_TIMER.h"
-#include "INC_BUTTON.h"
+#include "input_reading.h"
+//===============FINATE STATES MACHINE FUNCTION PART==========================================================================================================
 
 void fsm_manual_run();
 #endif /* INC_FSM_MANUAL_H_ */
