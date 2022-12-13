@@ -33,7 +33,7 @@ void set_timeout_duration(int time)
 {
 	timeout_duration = time;
 }
-//Function for setting display time
+//Function for setting display time in terminal
 void set_road1_time(int time)
 {
 	count1 = time;
@@ -41,6 +41,14 @@ void set_road1_time(int time)
 void set_road2_time(int time)
 {
 	count2 = time;
+}
+void count_down_show()
+{
+	display_time(count1, count2);
+	if(count1 > 0)
+		count1-= 1000;
+	if(count2 > 0)
+		count2-= 1000;
 }
 //global time function - not use
 void update_time()

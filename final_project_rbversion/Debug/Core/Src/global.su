@@ -1,0 +1,8 @@
+global.c:20:6:set_green_time	16	static
+global.c:24:6:set_yellow_time	16	static
+global.c:28:6:set_red_time	4	static
+global.c:32:6:set_timeout_duration	16	static
+global.c:37:6:set_road1_time	16	static
+global.c:41:6:set_road2_time	16	static
+global.c:46:6:update_time	4	static
+global.c:50:5:get_time	4	static

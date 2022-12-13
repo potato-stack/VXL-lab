@@ -1,0 +1,10 @@
+display_control.c:10:6:Red_On	8	static
+display_control.c:16:6:Green_On	8	static
+display_control.c:22:6:Yellow_On	8	static
+display_control.c:29:6:Red1_On	8	static
+display_control.c:35:6:Green1_On	8	static
+display_control.c:41:6:Yellow1_On	8	static
+display_control.c:48:6:Redp_On	8	static
+display_control.c:53:6:Greenp_On	8	static
+display_control.c:60:6:Reset	8	static
+display_control.c:68:6:Reset_p	8	static

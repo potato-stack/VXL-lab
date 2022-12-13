@@ -10,6 +10,7 @@ C_SRCS += \
 ../Core/Src/display_control.c \
 ../Core/Src/fsm_automatic.c \
 ../Core/Src/fsm_manual.c \
+../Core/Src/fsm_p.c \
 ../Core/Src/global.c \
 ../Core/Src/input_reading.c \
 ../Core/Src/main.c \
@@ -26,6 +27,7 @@ OBJS += \
 ./Core/Src/display_control.o \
 ./Core/Src/fsm_automatic.o \
 ./Core/Src/fsm_manual.o \
+./Core/Src/fsm_p.o \
 ./Core/Src/global.o \
 ./Core/Src/input_reading.o \
 ./Core/Src/main.o \
@@ -42,6 +44,7 @@ C_DEPS += \
 ./Core/Src/display_control.d \
 ./Core/Src/fsm_automatic.d \
 ./Core/Src/fsm_manual.d \
+./Core/Src/fsm_p.d \
 ./Core/Src/global.d \
 ./Core/Src/input_reading.d \
 ./Core/Src/main.d \

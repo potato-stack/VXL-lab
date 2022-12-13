@@ -46,6 +46,7 @@ void set_yellow_time(int time);
 void set_timeout_duration(int time);
 void set_road1_time(int time);
 void set_road2_time(int time);
+void count_down_show();
 //------------------------------------this part is use for displaying interval time - not use----------------------------------------------
 
 
