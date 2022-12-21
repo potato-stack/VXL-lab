@@ -27,7 +27,10 @@
 #include "SOFTWARE_TIMER.h"
 #include "scheduler.h"
 #include "fsm_automatic.h"
-//#include "fsm_manual.h"
+#include "fsm_manual.h"
+#include "fsm_pedestrian.h"
+#include "fsm_tunning.h"
+#include "advanced_scheduler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,12 +70,40 @@ void output_checking()
 	int temp = getTimer1();
 	HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\r",temp), 1000);
 }
+void space()
+{
+	char str[30];
+	HAL_UART_Transmit(&huart2, str, sprintf(str, "%---------------\r"), 1000);
+}
+void output_error(int temp)
+{
+	char str[30];
+	HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\r", temp), 1000);
+}
+void output_time(int index, int time)
+{
+	char str[30];
+	char arr[2][20] = {"Green time","Yellow time"};
+	HAL_UART_Transmit(&huart2, str, sprintf(str, "%s: %d\r",arr[index],time/1000), 1000);
+}
+void change_mode(int index)
+{
+	char arr[3][20] = {"Auto mode","Manual mode", "Tuning mode"};
+	char str[30];
+	HAL_UART_Transmit(&huart2, str, sprintf(str, "Change to %s\r", arr[index]), 1000);
+}
 
 void display_time(int time1, int time2)
 {
 	char str[50];
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "road1: %d road2: %d\r",time1/1000, time2/1000), 1000);
+	HAL_UART_Transmit(&huart2, str, sprintf(str, "road1: %d road2: %d\r",time1, time2), 1000);
 }
+
+void sound_loud(int frequency)
+{
+		__HAL_TIM_SetCompare (&htim3, TIM_CHANNEL_1, frequency);
+}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -112,6 +143,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   HAL_TIM_Base_Start_IT (& htim2 ) ;
   /* USER CODE END 2 */
 
@@ -119,28 +151,30 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   //initial state ===================================================================
   Reset();
-  SCH_Init();
-  setTimer2(10);
+  Reset_p();
+  adv_SCH_Init();
   status1 = 0;
-  set_green_time(7000);
-  set_yellow_time(3000);
-  set_red_time();
+  set_green_time(5000);
+  set_yellow_time(5000);
+  set_timeout_duration(20000);
+  set_pedestrian_duration(60000);
   //adding  tasks======================================================================
-  SCH_Add_Task(button_reading, 0, 10);
-  SCH_Add_Task(timerRun, 0, 10);
-  SCH_Add_Task(fsm_automatic_run, 0, 10);
-  //SCH_Add_Task(output_checking, 0, 1000);
-  //SCH_Add_Task(count_down_show, 0, 1000);
+  adv_SCH_Add_Task(button_reading, 0, 70);
+  adv_SCH_Add_Task(timerRun, 0, 10);
+  adv_SCH_Add_Task(fsm_automatic_run, 0, 10);
+  adv_SCH_Add_Task(fsm_pedestrian, 0, 10);
+  adv_SCH_Add_Task(fsm_manual_run, 0, 10);
+  adv_SCH_Add_Task(fsm_tunning_run, 0, 10);
+  //adv_SCH_Add_Task(output_checking, 0, 1000);
+  //adv_SCH_Add_Task(count_down_show, 0, 1000);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   while (1)
   {
-	  SCH_Dispatch_Tasks();
-	  if(button_flag[0] == 1)
-	  {
-		  button_flag[0] = 0;
-	  }
+     adv_SCH_Dispatch_Tasks();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  //HAL_Delay(3000);
   }
   /* USER CODE END 3 */
 }
@@ -367,7 +401,9 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
-	SCH_Update();
+	//SCH_Update();
+	adv_SCH_Update();
+	global_time+=10;
 }
 
 /* USER CODE END 4 */

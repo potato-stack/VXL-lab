@@ -81,8 +81,12 @@ void Error_Handler(void);
 #define Led_2_Pin GPIO_PIN_5
 #define Led_2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-void Print_TimeStamp();
-void Print_TimeStamp2();
+void output_checking();
+void output_error();
+void output_time(int index, int time);
+void change_mode(int index);
+void display_time(int time1, int time2);
+void sound_loud(int frequency);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -35,6 +35,9 @@ void button_reading()
 			case 2:
 				debounceButtonBuffer2[i] = HAL_GPIO_ReadPin(button_3_GPIO_Port, button_3_Pin);
 				break;
+			case 3:
+				debounceButtonBuffer2[i] = HAL_GPIO_ReadPin(button_p_GPIO_Port, button_p_Pin);
+				break;
 			default:
 				debounceButtonBuffer2[i] = BUTTON_IS_RELEASED;
 				break;
