@@ -21,20 +21,29 @@
 #define MAN_GREEN_RED			13			//Green on first road, red on the second
 #define MAN_YELLOW_RED			14			//Yellow on first road, red on the second
 
+
+#define TUNNING_GREEN 			15
+#define TUNNING_YELLOW 			16
+
+#define WAITING					-1
+//define the value to convert from milisec to sec when displaying or output in terminal
+#define CYCLE 					1000
 //===============VARIABLES PART==========================================================================================================
 //-------------------------------------------------status of finate state machine--------------------------------------------------------
 extern int status1;
 extern int status2;
 //extern int status3;
 //extern int status4;
-
+//extern int sound;
+//extern int sound_flag;
 //-------------------------------------------------leds' time variables--------------------------------------------------------------------
 extern int green_time;
 extern int red_time;
 extern int yellow_time;
 
 extern int timeout_duration;
-
+extern int pedestrian_duration;
+extern int checking;
 //-------------------------------------------------UART time display variables--------------------------------------------------------------------
 extern int count1;
 extern int count2;
@@ -44,8 +53,10 @@ extern int count2;
 void set_green_time(int time);
 void set_yellow_time(int time);
 void set_timeout_duration(int time);
+void set_pedestrian_duration(int time);
 void set_road1_time(int time);
 void set_road2_time(int time);
+void count_down_show();
 //------------------------------------this part is use for displaying interval time - not use----------------------------------------------
 
 

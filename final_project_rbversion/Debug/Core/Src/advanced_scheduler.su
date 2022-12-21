@@ -1,0 +1,8 @@
+advanced_scheduler.c:11:11:new_task	32	static
+advanced_scheduler.c:23:6:adv_SCH_Init	4	static
+advanced_scheduler.c:29:6:adv_SCH_push	24	static
+advanced_scheduler.c:79:11:adv_SCH_pop	16	static
+advanced_scheduler.c:92:6:adv_SCH_Add_Task	32	static
+advanced_scheduler.c:102:6:adv_SCH_Update	4	static
+advanced_scheduler.c:117:6:adv_SCH_Dispatch_Tasks	16	static
+advanced_scheduler.c:140:6:adv_SCH_Delete_Task	16	static

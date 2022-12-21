@@ -1,5 +1,9 @@
-SOFTWARE_TIMER.c:14:6:setTimer1	16	static
-SOFTWARE_TIMER.c:20:6:setTimer2	16	static
-SOFTWARE_TIMER.c:25:5:getTimer1	4	static
-SOFTWARE_TIMER.c:29:5:getTimer2	4	static
-SOFTWARE_TIMER.c:33:6:timerRun	4	static
+SOFTWARE_TIMER.c:18:6:setTimer1	16	static
+SOFTWARE_TIMER.c:24:6:setTimer2	16	static
+SOFTWARE_TIMER.c:29:6:setTimer3	16	static
+SOFTWARE_TIMER.c:34:6:setTimer4	16	static
+SOFTWARE_TIMER.c:40:5:getTimer1	4	static
+SOFTWARE_TIMER.c:44:5:getTimer2	4	static
+SOFTWARE_TIMER.c:48:5:getTimer3	4	static
+SOFTWARE_TIMER.c:52:5:getTimer4	4	static
+SOFTWARE_TIMER.c:56:6:timerRun	4	static

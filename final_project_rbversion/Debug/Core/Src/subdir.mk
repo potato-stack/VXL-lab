@@ -7,9 +7,12 @@
 C_SRCS += \
 ../Core/Src/INC_BUTTON.c \
 ../Core/Src/SOFTWARE_TIMER.c \
+../Core/Src/advanced_scheduler.c \
 ../Core/Src/display_control.c \
 ../Core/Src/fsm_automatic.c \
 ../Core/Src/fsm_manual.c \
+../Core/Src/fsm_pedestrian.c \
+../Core/Src/fsm_tunning.c \
 ../Core/Src/global.c \
 ../Core/Src/input_reading.c \
 ../Core/Src/main.c \
@@ -23,9 +26,12 @@ C_SRCS += \
 OBJS += \
 ./Core/Src/INC_BUTTON.o \
 ./Core/Src/SOFTWARE_TIMER.o \
+./Core/Src/advanced_scheduler.o \
 ./Core/Src/display_control.o \
 ./Core/Src/fsm_automatic.o \
 ./Core/Src/fsm_manual.o \
+./Core/Src/fsm_pedestrian.o \
+./Core/Src/fsm_tunning.o \
 ./Core/Src/global.o \
 ./Core/Src/input_reading.o \
 ./Core/Src/main.o \
@@ -39,9 +45,12 @@ OBJS += \
 C_DEPS += \
 ./Core/Src/INC_BUTTON.d \
 ./Core/Src/SOFTWARE_TIMER.d \
+./Core/Src/advanced_scheduler.d \
 ./Core/Src/display_control.d \
 ./Core/Src/fsm_automatic.d \
 ./Core/Src/fsm_manual.d \
+./Core/Src/fsm_pedestrian.d \
+./Core/Src/fsm_tunning.d \
 ./Core/Src/global.d \
 ./Core/Src/input_reading.d \
 ./Core/Src/main.d \
