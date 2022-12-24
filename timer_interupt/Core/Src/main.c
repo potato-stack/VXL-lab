@@ -19,18 +19,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "com_reiceive.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "global.h"
-#include "input_reading.h"
-#include "SOFTWARE_TIMER.h"
-#include "scheduler.h"
-#include "fsm_automatic.h"
-#include "fsm_manual.h"
-#include "fsm_pedestrian.h"
-#include "fsm_tunning.h"
-#include "advanced_scheduler.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,8 +41,9 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+
 TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart2;
 
@@ -59,49 +53,41 @@ UART_HandleTypeDef huart2;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_TIM2_Init(void);
 static void MX_GPIO_Init(void);
+static void MX_ADC1_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_TIM3_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-void output_checking()
-{
-	char str[30];
-	int temp = getTimer1();
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\r",temp), 1000);
-}
-void space()
-{
-	char str[30];
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "%---------------\r"), 1000);
-}
-void output_error(int temp)
-{
-	char str[30];
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "%d\r", temp), 1000);
-}
-void output_time(int index, int time)
-{
-	char str[30];
-	char arr[2][20] = {"Green time","Yellow time"};
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "%s: %d\r",arr[index],time/1000), 1000);
-}
-void change_mode(int index)
-{
-	char arr[3][20] = {"Auto mode","Manual mode", "Tuning mode"};
-	char str[30];
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "Change to %s\r", arr[index]), 1000);
-}
+uint8_t temp = 0;
+uint8_t buffer[MAX_BUFFER_SIZE];
+uint8_t index_buffer = 0;
+uint8_t buffer_flag = 0;
 
-void display_time(int time1, int time2)
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	char str[50];
-	HAL_UART_Transmit(&huart2, str, sprintf(str, "road1: %d road2: %d\r",time1, time2), 1000);
+	if(huart->Instance - USART2 == 0)
+	{
+		HAL_UART_Transmit(&huart2, &temp, 1, 50);
+		buffer[index_buffer++] = temp;
+		if(index_buffer == MAX_BUFFER_SIZE) index_buffer = 0;
+		buffer_flag = 1;
+		HAL_UART_Receive_IT(&huart2, &temp, 1);
+	}
 }
-
-void sound_loud(int frequency)
+uint8_t Get_value()
 {
-		__HAL_TIM_SetCompare (&htim3, TIM_CHANNEL_1, frequency);
+	return HAL_ADC_GetValue(& hadc1 );
+}
+uint8_t ADC_value = 0;
+void Send_value()
+{
+	char str[30];
+	if(ack == 1)
+	{
+		ADC_value = Get_value();
+	}
+	HAL_UART_Transmit (& huart2 , ( void *) str , sprintf ( str , "#ADC=%ld!\n\r",ADC_value) , 1000) ;
+
 }
 
 /* USER CODE END PFP */
@@ -109,6 +95,14 @@ void sound_loud(int frequency)
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+//uint8_t temp = 0;
+//
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+//	if(huart->Instance == USART2){
+//		HAL_UART_Transmit(&huart2, &temp, 1, 50);
+//		HAL_UART_Receive_IT(&huart2, &temp, 1);
+//	}
+//}
 /* USER CODE END 0 */
 
 /**
@@ -134,47 +128,38 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  MX_GPIO_Init ();
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_TIM2_Init();
   MX_GPIO_Init();
   MX_USART2_UART_Init();
-  MX_TIM3_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-  HAL_TIM_Base_Start_IT (& htim2 ) ;
+  HAL_ADC_Start(&hadc1);
+  HAL_UART_Receive_IT(&huart2, &temp, 1);
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //initial state ===================================================================
-  Reset();
-  Reset_p();
-  adv_SCH_Init();
-  status1 = 0;
-  set_green_time(5000);
-  set_yellow_time(5000);
-  set_timeout_duration(20000);
-  set_pedestrian_duration(60000);
-  //adding  tasks======================================================================
-  adv_SCH_Add_Task(button_reading, 0, 70);
-  adv_SCH_Add_Task(timerRun, 0, 10);
-  adv_SCH_Add_Task(fsm_automatic_run, 0, 10);
-  adv_SCH_Add_Task(fsm_pedestrian, 0, 10);
-  adv_SCH_Add_Task(fsm_manual_run, 0, 10);
-  adv_SCH_Add_Task(fsm_tunning_run, 0, 10);
-  //adv_SCH_Add_Task(output_checking, 0, 1000);
-  //adv_SCH_Add_Task(count_down_show, 0, 1000);
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  cmd_init();
+  uart_communiction_innit();
   while (1)
   {
-     adv_SCH_Dispatch_Tasks();
+
+	  if(buffer_flag == 1)
+	  {
+		  cmd_parser_fsm();
+		  buffer_flag = 0;
+	  }
+	  uart_communication_fsm() ;
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  //HAL_Delay(3000);
+
   }
   /* USER CODE END 3 */
 }
@@ -187,6 +172,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -212,6 +198,57 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC1_Init(void)
+{
+
+  /* USER CODE BEGIN ADC1_Init 0 */
+
+  /* USER CODE END ADC1_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
+  /** Common config
+  */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+
+  /* USER CODE END ADC1_Init 2 */
+
 }
 
 /**
@@ -260,65 +297,6 @@ static void MX_TIM2_Init(void)
 }
 
 /**
-  * @brief TIM3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM3_Init(void)
-{
-
-  /* USER CODE BEGIN TIM3_Init 0 */
-
-  /* USER CODE END TIM3_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM3_Init 1 */
-
-  /* USER CODE END TIM3_Init 1 */
-  htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 63;
-  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 999;
-  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM3_Init 2 */
-
-  /* USER CODE END TIM3_Init 2 */
-  HAL_TIM_MspPostInit(&htim3);
-
-}
-
-/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -362,50 +340,24 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, Led_p_1_Pin|Led_4_Pin|Led_3_Pin|Led_2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Led_p_2_Pin|Led_1_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pins : button_1_Pin button_2_Pin */
-  GPIO_InitStruct.Pin = button_1_Pin|button_2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : button_3_Pin button_p_Pin */
-  GPIO_InitStruct.Pin = button_3_Pin|button_p_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Led_p_1_Pin Led_4_Pin Led_3_Pin Led_2_Pin */
-  GPIO_InitStruct.Pin = Led_p_1_Pin|Led_4_Pin|Led_3_Pin|Led_2_Pin;
+  /*Configure GPIO pin : LED_RED_Pin */
+  GPIO_InitStruct.Pin = LED_RED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Led_p_2_Pin Led_1_Pin */
-  GPIO_InitStruct.Pin = Led_p_2_Pin|Led_1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(LED_RED_GPIO_Port, &GPIO_InitStruct);
 
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	//SCH_Update();
-	adv_SCH_Update();
-	global_time+=10;
+	timerRun();
 }
-
 /* USER CODE END 4 */
 
 /**

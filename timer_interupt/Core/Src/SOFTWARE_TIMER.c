@@ -5,7 +5,7 @@
  *      Author: hatru
  */
 #include "SOFTWARE_TIMER.h"
-#include "global.h"
+
 int timer1_flag = 0;
 int timer1_counter = 0;
 int timer2_flag = 0;

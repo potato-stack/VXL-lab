@@ -50,8 +50,6 @@ extern "C" {
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -60,33 +58,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define button_1_Pin GPIO_PIN_1
-#define button_1_GPIO_Port GPIOA
-#define button_2_Pin GPIO_PIN_5
-#define button_2_GPIO_Port GPIOA
-#define button_3_Pin GPIO_PIN_0
-#define button_3_GPIO_Port GPIOB
-#define button_p_Pin GPIO_PIN_1
-#define button_p_GPIO_Port GPIOB
-#define Led_p_1_Pin GPIO_PIN_10
-#define Led_p_1_GPIO_Port GPIOB
-#define Led_p_2_Pin GPIO_PIN_8
-#define Led_p_2_GPIO_Port GPIOA
-#define Led_1_Pin GPIO_PIN_10
-#define Led_1_GPIO_Port GPIOA
-#define Led_4_Pin GPIO_PIN_3
-#define Led_4_GPIO_Port GPIOB
-#define Led_3_Pin GPIO_PIN_4
-#define Led_3_GPIO_Port GPIOB
-#define Led_2_Pin GPIO_PIN_5
-#define Led_2_GPIO_Port GPIOB
+#define LED_RED_Pin GPIO_PIN_5
+#define LED_RED_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
-void output_checking();
-void output_error();
-void output_time(int index, int time);
-void change_mode(int index);
-void display_time(int time1, int time2);
-void sound_loud(int frequency);
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

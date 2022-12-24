@@ -1,0 +1,2 @@
+com_reiceive.c:25:6:cmd_init	4	static
+com_reiceive.c:33:6:cmd_parser_fsm	4	static
